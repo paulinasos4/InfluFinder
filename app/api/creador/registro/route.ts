@@ -36,7 +36,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (collaborationTypes.length === 0) {
+    const collab = Array.isArray(collaborationTypes) ? collaborationTypes : []
+    if (collab.length === 0) {
       return NextResponse.json(
         { error: 'Debe seleccionar al menos un tipo de colaboración' },
         { status: 400 }
@@ -70,7 +71,7 @@ export async function POST(request: NextRequest) {
         audienceAgeRange: audienceAgeRange || null,
         hasProfessionalTeam: hasProfessionalTeam || false,
         influencerType: influencerType || null,
-        collaborations: collaborationTypes,
+        collaborations: collab,
         status: 'PENDING',
         platforms: {
           create: platforms.map((p: any) => ({
@@ -95,8 +96,9 @@ export async function POST(request: NextRequest) {
     )
   } catch (error: any) {
     console.error('Error creating influencer:', error)
+    const message = error?.message || 'Error al crear el registro. Intenta nuevamente.'
     return NextResponse.json(
-      { error: 'Error al crear el registro. Intenta nuevamente.' },
+      { error: message },
       { status: 500 }
     )
   }

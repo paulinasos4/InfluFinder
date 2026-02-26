@@ -1,6 +1,7 @@
 import SearchFilters from '@/components/SearchFilters'
 import InfluencerList from '@/components/InfluencerList'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 export default async function Home() {
   return (
@@ -34,12 +35,16 @@ export default async function Home() {
 
       {/* Módulo de búsqueda y filtros */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <SearchFilters />
+        <Suspense fallback={<div className="bg-white rounded-lg shadow-md p-6 animate-pulse h-64" />}>
+          <SearchFilters />
+        </Suspense>
       </section>
 
       {/* Listado de resultados */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <InfluencerList />
+        <Suspense fallback={<div className="text-center py-12 text-gray-600">Cargando...</div>}>
+          <InfluencerList />
+        </Suspense>
       </section>
     </main>
   )

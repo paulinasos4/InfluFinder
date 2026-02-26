@@ -36,9 +36,14 @@ export default function InfluencerList() {
         const params = new URLSearchParams(searchParams.toString())
         const response = await fetch(`/api/influencers?${params.toString()}`)
         const data = await response.json()
+        if (!response.ok || !Array.isArray(data)) {
+          setInfluencers([])
+          return
+        }
         setInfluencers(data)
       } catch (error) {
         console.error('Error fetching influencers:', error)
+        setInfluencers([])
       } finally {
         setLoading(false)
       }
@@ -100,11 +105,12 @@ export default function InfluencerList() {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {influencers.map((influencer) => {
-              const maxFollowers = influencer.platforms.reduce((max, p) => 
+              const platforms = influencer.platforms ?? []
+              const maxFollowers = platforms.reduce((max, p) => 
                 Math.max(max, p.followers), 0
               )
-              const avgEngagement = influencer.platforms.length > 0
-                ? influencer.platforms.reduce((sum, p) => sum + p.engagementRate, 0) / influencer.platforms.length
+              const avgEngagement = platforms.length > 0
+                ? platforms.reduce((sum, p) => sum + p.engagementRate, 0) / platforms.length
                 : 0
 
               return (
@@ -131,7 +137,7 @@ export default function InfluencerList() {
                       <div className="ml-4">
                         <div className="text-sm font-medium text-gray-900">{influencer.name}</div>
                         <div className="text-sm text-gray-500">
-                          @{influencer.platforms[0]?.username || 'N/A'}
+                          @{(platforms[0]?.username) || 'N/A'}
                         </div>
                       </div>
                     </div>
@@ -146,7 +152,7 @@ export default function InfluencerList() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex flex-wrap gap-1">
-                      {influencer.platforms.map((platform) => (
+                      {platforms.map((platform) => (
                         <span
                           key={platform.id}
                           className="px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-700"

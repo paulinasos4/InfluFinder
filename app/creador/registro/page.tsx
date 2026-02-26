@@ -20,7 +20,6 @@ const NICHE_OPTIONS = [
 const PLATFORMS = [
   { value: 'INSTAGRAM', label: 'Instagram' },
   { value: 'TIKTOK', label: 'TikTok' },
-  { value: 'FACEBOOK', label: 'Facebook' },
   { value: 'YOUTUBE', label: 'YouTube' }
 ]
 
@@ -496,7 +495,7 @@ export default function RegistroCreador() {
 
               {platforms.length === 0 && (
                 <p className="text-gray-500 text-sm">
-                  Haz clic en "Agregar plataforma" para comenzar
+                  Haz clic en &quot;Agregar plataforma&quot; para comenzar
                 </p>
               )}
             </section>

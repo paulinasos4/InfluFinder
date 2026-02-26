@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: influ_finder_db
+    restart: always
+    environment:
+      POSTGRES_USER: influ_finder
+      POSTGRES_PASSWORD: influ_finder_password
+      POSTGRES_DB: influ_finder
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+

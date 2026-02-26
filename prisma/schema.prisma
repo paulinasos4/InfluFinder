@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Platform {
+  INSTAGRAM
+  TIKTOK
+  YOUTUBE
+}
+
+enum CollaborationType {
+  CANJE
+  PAGO
+  AMBOS
+}
+
+enum AudienceGender {
+  HOMBRE
+  MUJER
+  AMBOS
+}
+
+enum AgeRange {
+  RANGE_18_24
+  RANGE_24_34
+  RANGE_35_44
+  RANGE_45_PLUS
+}
+
+enum InfluencerType {
+  MICRO
+  MACRO
+}
+
+enum Status {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Influencer {
+  id                String            @id @default(cuid())
+  name              String
+  email             String            @unique
+  phone             String?
+  photo             String?
+  bio               String?
+  niche             String            // categoría/nicho
+  department        String            // departamento de Uruguay
+  age               Int?
+  status            Status            @default(PENDING)
+  audienceGender    AudienceGender?
+  audienceAgeRange  AgeRange?
+  hasProfessionalTeam Boolean         @default(false)
+  influencerType    InfluencerType?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  platforms         PlatformData[]
+  collaborations    CollaborationType[]
+
+  @@index([status])
+  @@index([niche])
+  @@index([department])
+}
+
+model PlatformData {
+  id                String            @id @default(cuid())
+  influencerId      String
+  platform          Platform
+  username          String
+  followers         Int
+  engagementRate    Float
+  influencer        Influencer        @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+
+  @@index([influencerId])
+  @@index([platform])
+}
+

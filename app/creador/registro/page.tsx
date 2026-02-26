@@ -136,10 +136,13 @@ export default function RegistroCreador() {
       const data = await response.json()
 
       if (response.ok) {
-        setMessage({ type: 'success', text: '¡Registro exitoso! Tu perfil está pendiente de aprobación.' })
+        setMessage({
+          type: 'success',
+          text: '¡Registro exitoso! Tu perfil está pendiente de aprobación. Si no apareces en Admin, usá el botón "Refrescar lista" en el panel.',
+        })
         setTimeout(() => {
           router.push('/')
-        }, 2000)
+        }, 3000)
       } else {
         setMessage({ type: 'error', text: data.error || 'Error al registrar. Intenta nuevamente.' })
       }

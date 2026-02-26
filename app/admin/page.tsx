@@ -30,6 +30,9 @@ export default function AdminPage() {
   const [loginUser, setLoginUser] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
   const [loginError, setLoginError] = useState('')
+  const [searchEmail, setSearchEmail] = useState('')
+  const [searchResult, setSearchResult] = useState<{ found: boolean; id?: string; name?: string; email?: string; status?: string } | null>(null)
+  const [searching, setSearching] = useState(false)
 
   useEffect(() => {
     checkAuthAndFetch()
@@ -98,6 +101,47 @@ export default function AdminPage() {
     } catch (error) {
       console.error('Error approving influencer:', error)
       alert('Error al aprobar el influencer')
+    }
+  }
+
+  const searchByEmail = async () => {
+    if (!searchEmail.trim()) return
+    setSearching(true)
+    setSearchResult(null)
+    try {
+      const res = await fetch(`/api/admin/influencer-by-email?email=${encodeURIComponent(searchEmail.trim())}`, {
+        credentials: 'include',
+      })
+      const data = await res.json()
+      if (data.found !== undefined) setSearchResult(data)
+      else setSearchResult({ found: false })
+    } catch {
+      setSearchResult({ found: false })
+    } finally {
+      setSearching(false)
+    }
+  }
+
+  const moveToPending = async () => {
+    if (!searchEmail.trim()) return
+    try {
+      const res = await fetch('/api/admin/influencer-by-email', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email: searchEmail.trim() }),
+      })
+      const data = await res.json()
+      if (res.ok) {
+        alert('Perfil pasado a pendientes. Usá "Refrescar lista".')
+        setSearchResult(null)
+        setSearchEmail('')
+        checkAuthAndFetch()
+      } else {
+        alert(data.error || 'Error')
+      }
+    } catch {
+      alert('Error de conexión')
     }
   }
 
@@ -196,8 +240,60 @@ export default function AdminPage() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+          <p className="text-amber-900 font-medium mb-2">Si un email dice &quot;ya está registrado&quot; pero no aparece en las listas:</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <input
+              type="email"
+              placeholder="Email del creador"
+              value={searchEmail}
+              onChange={e => setSearchEmail(e.target.value)}
+              className="px-3 py-2 border border-gray-300 rounded-md text-gray-900 w-64"
+            />
+            <button
+              type="button"
+              onClick={searchByEmail}
+              disabled={searching}
+              className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-md text-sm disabled:opacity-50"
+            >
+              {searching ? 'Buscando...' : 'Buscar'}
+            </button>
+          </div>
+          {searchResult && (
+            <div className="mt-3 text-sm">
+              {searchResult.found ? (
+                <>
+                  <span className="text-gray-700">
+                    {searchResult.name} ({searchResult.email}) — estado: <strong>{searchResult.status}</strong>
+                  </span>
+                  {searchResult.status !== 'PENDING' && (
+                    <button
+                      type="button"
+                      onClick={moveToPending}
+                      className="ml-3 text-amber-700 underline font-medium"
+                    >
+                      Mover a pendientes
+                    </button>
+                  )}
+                </>
+              ) : (
+                <span className="text-gray-600">No se encontró ese email en la base.</span>
+              )}
+            </div>
+          )}
+        </div>
+
         <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold mb-4 text-gray-900">Influencers Pendientes de Aprobación</h2>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-semibold text-gray-900">Influencers Pendientes de Aprobación</h2>
+            <button
+              type="button"
+              onClick={() => checkAuthAndFetch()}
+              className="text-sm bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg"
+            >
+              Refrescar lista
+            </button>
+          </div>
 
           {pendingInfluencers.length === 0 ? (
             <p className="text-gray-600">No hay influencers pendientes de aprobación.</p>

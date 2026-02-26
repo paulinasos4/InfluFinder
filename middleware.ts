@@ -16,8 +16,9 @@ export function middleware(request: NextRequest) {
   const isApproveApi = /^\/api\/influencers\/[^/]+\/approve$/.test(pathname)
   const isDeleteInfluencer =
     request.method === 'DELETE' && /^\/api\/influencers\/[^/]+$/.test(pathname)
+  const isAdminByEmail = pathname === '/api/admin/influencer-by-email'
 
-  if (isPendingApi || isApproveApi || isDeleteInfluencer) {
+  if (isPendingApi || isApproveApi || isDeleteInfluencer || isAdminByEmail) {
     if (!isAdminAuthenticated(request)) {
       return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
     }
@@ -27,5 +28,10 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/api/influencers/pending', '/api/influencers/:id/approve', '/api/influencers/:id'],
+  matcher: [
+    '/api/influencers/pending',
+    '/api/influencers/:id/approve',
+    '/api/influencers/:id',
+    '/api/admin/influencer-by-email',
+  ],
 }

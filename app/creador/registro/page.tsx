@@ -495,8 +495,8 @@ export default function RegistroCreador() {
 
               {platforms.length === 0 && (
                 <p className="text-gray-500 text-sm">
-                  Haz clic en &quot;Agregar plataforma&quot; para comenzar
-                </p>
+                  Haz clic en "Agregar plataforma" para comenzar
+                </p>  
               )}
             </section>
 

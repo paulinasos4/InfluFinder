@@ -127,6 +127,50 @@ El esquema incluye:
 - **PlatformData**: Métricas por plataforma social
 - **Enums**: Plataformas, tipos de colaboración, géneros, rangos etarios, etc.
 
+## Despliegue en Vercel
+
+1. **Subir el código a GitHub**  
+   Crea un repositorio y sube el proyecto (no subas la carpeta `.env`).
+
+2. **Crear proyecto en Vercel**  
+   - Entrá a [vercel.com](https://vercel.com) e iniciá sesión.  
+   - “Add New” → “Project” → importá el repo de GitHub.  
+   - Framework: Next.js (detectado automáticamente).  
+   - No cambies el comando de build.
+
+3. **Base de datos PostgreSQL en la nube**  
+   Necesitás una base Postgres accesible por URL. Opciones gratuitas:
+   - **[Neon](https://neon.tech)**: cuenta gratis, creá un proyecto y copiá la connection string.  
+   - **Vercel Postgres**: en el dashboard de Vercel, pestaña “Storage” → Create Database → Postgres.
+
+4. **Variables de entorno en Vercel**  
+   En el proyecto → Settings → Environment Variables, agregá:
+
+   | Variable          | Valor                                                                 |
+   |-------------------|-----------------------------------------------------------------------|
+   | `DATABASE_URL`    | La URL de tu Postgres (ej. `postgresql://user:pass@host/db?sslmode=require`) |
+   | `ADMIN_USER`      | Tu usuario de admin                                                   |
+   | `ADMIN_PASSWORD`  | Tu contraseña de admin                                                |
+
+   Marcá “Production”, “Preview” y “Development” si querés usarlas en todos los entornos.
+
+5. **Desplegar**  
+   Guardá las variables y hacé “Redeploy” (o un nuevo push al repo).  
+   La primera vez puede fallar si la base está vacía: tenés que crear las tablas.
+
+6. **Crear las tablas en la base de producción**  
+   Una sola vez, ejecutá las migraciones contra la base de Vercel/Neon:
+
+   ```bash
+   DATABASE_URL="postgresql://..." npm run db:push
+   ```
+
+   Reemplazá `DATABASE_URL` por la misma URL que pusiste en Vercel (la de producción). Así Prisma crea las tablas en esa base.
+
+7. **Panel admin en producción**  
+   Tu app quedará en `https://tu-proyecto.vercel.app`.  
+   El admin: **https://tu-proyecto.vercel.app/admin** (mismo usuario y contraseña que configuraste en `ADMIN_USER` y `ADMIN_PASSWORD`).
+
 ## Próximos Pasos (Mejoras Futuras)
 
 - Panel de administración para aprobar/rechazar perfiles

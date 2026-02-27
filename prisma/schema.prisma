@@ -12,6 +12,7 @@ datasource db {
 }
 
 enum Platform {
+  FACEBOOK
   INSTAGRAM
   TIKTOK
   YOUTUBE

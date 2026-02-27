@@ -158,7 +158,8 @@ export default function InfluencerList() {
                           className="px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-700"
                         >
                           {platform.platform === 'INSTAGRAM' ? 'IG' : 
-                           platform.platform === 'TIKTOK' ? 'TT' : 'YT'}
+                           platform.platform === 'TIKTOK' ? 'TT' : 
+                           platform.platform === 'FACEBOOK' ? 'FB' : 'YT'}
                         </span>
                       ))}
                     </div>

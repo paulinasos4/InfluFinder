@@ -32,6 +32,7 @@ export default async function InfluencerProfile({ params }: PageProps) {
 
   const getPlatformLabel = (platform: string) => {
     switch (platform) {
+      case 'FACEBOOK': return 'Facebook'
       case 'INSTAGRAM': return 'Instagram'
       case 'TIKTOK': return 'TikTok'
       case 'YOUTUBE': return 'YouTube'

@@ -19,6 +19,7 @@ const NICHE_OPTIONS = [
 const PLATFORMS = [
   { value: 'INSTAGRAM', label: 'Instagram' },
   { value: 'TIKTOK', label: 'TikTok' },
+  { value: 'FACEBOOK', label: 'Facebook' },
   { value: 'YOUTUBE', label: 'YouTube' }
 ]
 

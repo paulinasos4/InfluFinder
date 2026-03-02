@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'InfluFinder - Directorio de Influencers Uruguay',
+  title: 'Influ-finder - Directorio de Influencers Uruguay',
   description: 'Encuentra al influencer ideal para tu marca en minutos',
 }
 

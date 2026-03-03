@@ -122,40 +122,40 @@ export default async function InfluencerProfile({ params }: PageProps) {
           </div>
 
           {/* Contenido del perfil */}
-          <div className="px-8 py-8">
+          <div className="px-8 py-8 text-gray-900">
             {/* Biografía */}
             {influencer.bio && (
               <section className="mb-8">
-                <h2 className="text-xl font-semibold mb-3">Biografía</h2>
-                <p className="text-gray-700 leading-relaxed">{influencer.bio}</p>
+                <h2 className="text-xl font-semibold mb-3 text-gray-900">Biografía</h2>
+                <p className="text-gray-800 leading-relaxed">{influencer.bio}</p>
               </section>
             )}
 
             {/* Métricas por plataforma */}
             <section className="mb-8">
-              <h2 className="text-xl font-semibold mb-4">Métricas por plataforma</h2>
+              <h2 className="text-xl font-semibold mb-4 text-gray-900">Métricas por plataforma</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {influencer.platforms.map((platform) => (
                   <div
                     key={platform.id}
-                    className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
+                    className="border border-gray-300 rounded-lg p-4 hover:shadow-md transition-shadow bg-gray-50"
                   >
-                    <h3 className="font-semibold text-lg mb-2 flex items-center gap-2">
+                    <h3 className="font-semibold text-lg mb-2 flex items-center gap-2 text-gray-900">
                       <PlatformIcon platform={platform.platform} size={22} />
                       {getPlatformLabel(platform.platform)}
                     </h3>
-                    <p className="text-sm text-gray-600 mb-1">
+                    <p className="text-sm text-gray-800 mb-1">
                       @{platform.username}
                     </p>
                     <div className="mt-3 space-y-2">
                       <div>
-                        <span className="text-sm text-gray-500">Seguidores:</span>
-                        <p className="text-lg font-semibold">
+                        <span className="text-sm text-gray-700">Seguidores:</span>
+                        <p className="text-lg font-semibold text-gray-900">
                           {formatNumber(platform.followers)}
                         </p>
                       </div>
                       <div>
-                        <span className="text-sm text-gray-500">Engagement Rate:</span>
+                        <span className="text-sm text-gray-700">Engagement Rate:</span>
                         <p className="text-lg font-semibold text-blue-600">
                           {platform.engagementRate.toFixed(2)}%
                         </p>
@@ -168,10 +168,10 @@ export default async function InfluencerProfile({ params }: PageProps) {
 
             {/* Información adicional */}
             <section className="mb-8">
-              <h2 className="text-xl font-semibold mb-4">Información adicional</h2>
+              <h2 className="text-xl font-semibold mb-4 text-gray-900">Información adicional</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-medium text-gray-700 mb-2">Tipo de colaboración</h3>
+                  <h3 className="font-medium text-gray-800 mb-2">Tipo de colaboración</h3>
                   <div className="flex flex-wrap gap-2">
                     {influencer.collaborations.map((type) => (
                       <span
@@ -186,14 +186,14 @@ export default async function InfluencerProfile({ params }: PageProps) {
 
                 {influencer.age && (
                   <div>
-                    <h3 className="font-medium text-gray-700 mb-2">Edad del creador</h3>
+                    <h3 className="font-medium text-gray-800 mb-2">Edad del creador</h3>
                     <p className="text-gray-900">{influencer.age} años</p>
                   </div>
                 )}
 
                 {influencer.audienceGender && (
                   <div>
-                    <h3 className="font-medium text-gray-700 mb-2">Tipo de audiencia</h3>
+                    <h3 className="font-medium text-gray-800 mb-2">Tipo de audiencia</h3>
                     <p className="text-gray-900">
                       {getAudienceGenderLabel(influencer.audienceGender)}
                     </p>
@@ -202,7 +202,7 @@ export default async function InfluencerProfile({ params }: PageProps) {
 
                 {influencer.audienceAgeRange && (
                   <div>
-                    <h3 className="font-medium text-gray-700 mb-2">Rango etario de audiencia</h3>
+                    <h3 className="font-medium text-gray-800 mb-2">Rango etario de audiencia</h3>
                     <p className="text-gray-900">
                       {getAgeRangeLabel(influencer.audienceAgeRange)}
                     </p>
@@ -210,7 +210,7 @@ export default async function InfluencerProfile({ params }: PageProps) {
                 )}
 
                 <div>
-                  <h3 className="font-medium text-gray-700 mb-2">Equipo profesional</h3>
+                  <h3 className="font-medium text-gray-800 mb-2">Equipo profesional</h3>
                   <p className="text-gray-900">
                     {influencer.hasProfessionalTeam ? 'Sí' : 'No'}
                   </p>
@@ -218,7 +218,7 @@ export default async function InfluencerProfile({ params }: PageProps) {
 
                 {influencer.influencerType && (
                   <div>
-                    <h3 className="font-medium text-gray-700 mb-2">Tipo de influencer</h3>
+                    <h3 className="font-medium text-gray-800 mb-2">Tipo de influencer</h3>
                     <p className="text-gray-900">
                       {influencer.influencerType === 'MICRO' ? 'Micro influencer' : 'Macro influencer'}
                     </p>
@@ -228,15 +228,15 @@ export default async function InfluencerProfile({ params }: PageProps) {
             </section>
 
             {/* Contacto */}
-            <section className="border-t pt-6">
-              <h2 className="text-xl font-semibold mb-4">Contacto</h2>
+            <section className="border-t border-gray-200 pt-6">
+              <h2 className="text-xl font-semibold mb-4 text-gray-900">Contacto</h2>
               <div className="space-y-2">
-                <p className="text-gray-700">
-                  <span className="font-medium">Email:</span> {influencer.email}
+                <p className="text-gray-800">
+                  <span className="font-medium text-gray-900">Email:</span> {influencer.email}
                 </p>
                 {influencer.phone && (
-                  <p className="text-gray-700">
-                    <span className="font-medium">Teléfono:</span> {influencer.phone}
+                  <p className="text-gray-800">
+                    <span className="font-medium text-gray-900">Teléfono:</span> {influencer.phone}
                   </p>
                 )}
               </div>

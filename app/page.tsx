@@ -25,10 +25,10 @@ export default async function Home() {
       <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Encuentra al influencer ideal para tu marca
+            Influencers en Uruguay — Encuentra al influencer ideal para tu marca
           </h2>
           <p className="text-xl md:text-2xl text-blue-100">
-            Directorio público de creadores en Uruguay
+            Directorio con métricas de influencers: seguidores, engagement y más
           </p>
         </div>
       </section>

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import PlatformIcon from './PlatformIcon'
 
 interface PlatformData {
   id: string
@@ -155,8 +156,9 @@ export default function InfluencerList() {
                       {platforms.map((platform) => (
                         <span
                           key={platform.id}
-                          className="px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-700"
+                          className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-700"
                         >
+                          <PlatformIcon platform={platform.platform} size={12} />
                           {platform.platform === 'INSTAGRAM' ? 'IG' : 
                            platform.platform === 'TIKTOK' ? 'TT' : 
                            platform.platform === 'FACEBOOK' ? 'FB' : 'YT'}

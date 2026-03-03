@@ -2,6 +2,7 @@ import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
+import PlatformIcon from '@/components/PlatformIcon'
 
 interface PageProps {
   params: {
@@ -139,7 +140,8 @@ export default async function InfluencerProfile({ params }: PageProps) {
                     key={platform.id}
                     className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
                   >
-                    <h3 className="font-semibold text-lg mb-2">
+                    <h3 className="font-semibold text-lg mb-2 flex items-center gap-2">
+                      <PlatformIcon platform={platform.platform} size={22} />
                       {getPlatformLabel(platform.platform)}
                     </h3>
                     <p className="text-sm text-gray-600 mb-1">

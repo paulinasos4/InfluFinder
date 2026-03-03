@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import PlatformIcon from '@/components/PlatformIcon'
 
 const DEPARTMENTS = [
   'Montevideo', 'Canelones', 'Maldonado', 'Salto', 'Paysandú',
@@ -437,20 +438,26 @@ export default function RegistroCreador() {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-800 mb-1">
+                      <label className="block text-sm font-medium text-gray-800 mb-2">
                         Plataforma *
                       </label>
-                      <select
-                        value={platform.platform}
-                        onChange={(e) => updatePlatform(index, 'platform', e.target.value)}
-                        required
-                        className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      >
-                        <option value="">Selecciona...</option>
+                      <div className="flex flex-wrap gap-2">
                         {PLATFORMS.map(p => (
-                          <option key={p.value} value={p.value}>{p.label}</option>
+                          <button
+                            key={p.value}
+                            type="button"
+                            onClick={() => updatePlatform(index, 'platform', p.value)}
+                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-md border transition-colors ${
+                              platform.platform === p.value
+                                ? 'bg-blue-600 text-white border-blue-600'
+                                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                            }`}
+                          >
+                            <PlatformIcon platform={p.value} size={18} />
+                            {p.label}
+                          </button>
                         ))}
-                      </select>
+                      </div>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-800 mb-1">

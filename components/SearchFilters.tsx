@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import PlatformIcon from './PlatformIcon'
 
 const DEPARTMENTS = [
   'Montevideo', 'Canelones', 'Maldonado', 'Salto', 'Paysandú',
@@ -228,12 +229,13 @@ export default function SearchFilters() {
               key={platform.value}
               type="button"
               onClick={() => handlePlatformToggle(platform.value)}
-              className={`px-4 py-2 rounded-md border transition-colors ${
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-md border transition-colors ${
                 (filters.platforms as string[]).includes(platform.value)
                   ? 'bg-blue-600 text-white border-blue-600'
                   : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
               }`}
             >
+              <PlatformIcon platform={platform.value} size={18} className="flex-shrink-0" />
               {platform.label}
             </button>
           ))}

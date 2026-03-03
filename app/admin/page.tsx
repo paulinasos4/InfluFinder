@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import PlatformIcon from '@/components/PlatformIcon'
 
 interface PlatformData {
   id: string
@@ -323,8 +324,9 @@ export default function AdminPage() {
                           {influencer.platforms.map((platform) => (
                             <span
                               key={platform.id}
-                              className="px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-700"
+                              className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-700"
                             >
+                              <PlatformIcon platform={platform.platform} size={12} />
                               {platform.platform === 'INSTAGRAM' ? 'IG' : platform.platform === 'TIKTOK' ? 'TT' : platform.platform === 'FACEBOOK' ? 'FB' : 'YT'}
                             </span>
                           ))}
@@ -386,8 +388,9 @@ export default function AdminPage() {
                           {influencer.platforms.map((platform) => (
                             <span
                               key={platform.id}
-                              className="px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-700"
+                              className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-700"
                             >
+                              <PlatformIcon platform={platform.platform} size={12} />
                               {platform.platform === 'INSTAGRAM' ? 'IG' : platform.platform === 'TIKTOK' ? 'TT' : platform.platform === 'FACEBOOK' ? 'FB' : 'YT'}
                             </span>
                           ))}

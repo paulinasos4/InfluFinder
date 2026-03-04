@@ -169,7 +169,7 @@ export default function AdminPage() {
   // Pantalla de login
   if (loggedIn === false) {
     return (
-      <main className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <main className="min-h-screen bg-[#f4e8f3] flex items-center justify-center p-4">
         <div className="bg-white rounded-lg shadow-md p-8 max-w-sm w-full">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Acceso Admin</h1>
           <p className="text-gray-600 mb-6">Solo el administrador puede entrar.</p>
@@ -218,14 +218,14 @@ export default function AdminPage() {
 
   if (loading && loggedIn === null) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#f4e8f3] flex items-center justify-center">
         <p className="text-gray-600">Cargando...</p>
       </div>
     )
   }
 
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-[#f4e8f3]">
       <header className="bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">

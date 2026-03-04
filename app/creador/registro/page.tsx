@@ -512,7 +512,7 @@ export default function RegistroCreador() {
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-slate-800 hover:bg-slate-700 text-white px-8 py-3 rounded-lg font-medium transition-colors disabled:opacity-50"
+                className="bg-[#3f3e3e] hover:bg-[#353434] text-white px-8 py-3 rounded-lg font-medium transition-colors disabled:opacity-50"
               >
                 {loading ? 'Enviando...' : 'Enviar registro'}
               </button>

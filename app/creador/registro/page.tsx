@@ -156,22 +156,19 @@ export default function RegistroCreador() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm">
+    <main className="min-h-screen bg-slate-50">
+      <header className="bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link
-            href="/"
-            className="text-blue-600 hover:text-blue-800 font-medium"
-          >
+          <Link href="/" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">
             ← Volver al inicio
           </Link>
         </div>
       </header>
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-lg shadow-md p-8">
-          <h1 className="text-3xl font-bold mb-6 text-gray-900">Registro de Creador</h1>
-          <p className="text-gray-700 mb-6">
+        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-8">
+          <h1 className="text-3xl font-bold mb-6 text-slate-900">Registro de Creador</h1>
+          <p className="text-slate-600 mb-6">
             Completa el formulario para aparecer en nuestro directorio. Tu perfil quedará pendiente de aprobación.
           </p>
 
@@ -188,10 +185,10 @@ export default function RegistroCreador() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Información básica */}
             <section>
-              <h2 className="text-xl font-semibold mb-4 text-gray-900">Información básica</h2>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">Información básica</h2>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-1">
+                  <label className="block text-sm font-medium text-slate-800 mb-1">
                     Nombre completo *
                   </label>
                   <input
@@ -200,12 +197,12 @@ export default function RegistroCreador() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-1">
+                  <label className="block text-sm font-medium text-slate-800 mb-1">
                     Email *
                   </label>
                   <input
@@ -214,12 +211,12 @@ export default function RegistroCreador() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-1">
+                  <label className="block text-sm font-medium text-slate-800 mb-1">
                     Teléfono
                   </label>
                   <input
@@ -227,12 +224,12 @@ export default function RegistroCreador() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-1">
+                  <label className="block text-sm font-medium text-slate-800 mb-1">
                     URL de foto de perfil
                   </label>
                   <input
@@ -241,12 +238,12 @@ export default function RegistroCreador() {
                     value={formData.photo}
                     onChange={handleInputChange}
                     placeholder="https://..."
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-1">
+                  <label className="block text-sm font-medium text-slate-800 mb-1">
                     Biografía
                   </label>
                   <textarea
@@ -254,7 +251,7 @@ export default function RegistroCreador() {
                     value={formData.bio}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   />
                 </div>
               </div>
@@ -262,10 +259,10 @@ export default function RegistroCreador() {
 
             {/* Información profesional */}
             <section>
-              <h2 className="text-xl font-semibold mb-4 text-gray-900">Información profesional</h2>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">Información profesional</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-1">
+                  <label className="block text-sm font-medium text-slate-800 mb-1">
                     Nicho/Categoría *
                   </label>
                   <select
@@ -273,7 +270,7 @@ export default function RegistroCreador() {
                     value={formData.niche}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   >
                     <option value="">Selecciona...</option>
                     {NICHE_OPTIONS.map(niche => (
@@ -283,7 +280,7 @@ export default function RegistroCreador() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-1">
+                  <label className="block text-sm font-medium text-slate-800 mb-1">
                     Departamento *
                   </label>
                   <select
@@ -291,7 +288,7 @@ export default function RegistroCreador() {
                     value={formData.department}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   >
                     <option value="">Selecciona...</option>
                     {DEPARTMENTS.map(dept => (
@@ -301,7 +298,7 @@ export default function RegistroCreador() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-1">
+                  <label className="block text-sm font-medium text-slate-800 mb-1">
                     Edad
                   </label>
                   <input
@@ -311,19 +308,19 @@ export default function RegistroCreador() {
                     onChange={handleInputChange}
                     min="13"
                     max="100"
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-1">
+                  <label className="block text-sm font-medium text-slate-800 mb-1">
                     Tipo de influencer
                   </label>
                   <select
                     name="influencerType"
                     value={formData.influencerType}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   >
                     <option value="">Selecciona...</option>
                     <option value="MICRO">Micro influencer</option>
@@ -335,17 +332,17 @@ export default function RegistroCreador() {
 
             {/* Audiencia */}
             <section>
-              <h2 className="text-xl font-semibold mb-4 text-gray-900">Audiencia</h2>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">Audiencia</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-1">
+                  <label className="block text-sm font-medium text-slate-800 mb-1">
                     Género de audiencia
                   </label>
                   <select
                     name="audienceGender"
                     value={formData.audienceGender}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   >
                     <option value="">Selecciona...</option>
                     <option value="HOMBRE">Hombre</option>
@@ -355,14 +352,14 @@ export default function RegistroCreador() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-800 mb-1">
+                  <label className="block text-sm font-medium text-slate-800 mb-1">
                     Rango etario de audiencia
                   </label>
                   <select
                     name="audienceAgeRange"
                     value={formData.audienceAgeRange}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   >
                     <option value="">Selecciona...</option>
                     <option value="RANGE_18_24">18-24 años</option>
@@ -376,17 +373,17 @@ export default function RegistroCreador() {
 
             {/* Colaboraciones */}
             <section>
-              <h2 className="text-xl font-semibold mb-4 text-gray-900">Tipo de colaboración *</h2>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">Tipo de colaboración *</h2>
               <div className="flex flex-wrap gap-3">
                 {['CANJE', 'PAGO', 'AMBOS'].map(type => (
                   <button
                     key={type}
                     type="button"
                     onClick={() => handleCollaborationToggle(type)}
-                    className={`px-4 py-2 rounded-md border transition-colors ${
+                    className={`px-4 py-2 rounded-lg border transition-colors ${
                       formData.collaborationTypes.includes(type)
-                        ? 'bg-blue-600 text-white border-blue-600'
-                        : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                        ? 'bg-indigo-600 text-white border-indigo-600'
+                        : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
                     }`}
                   >
                     {type === 'CANJE' ? 'Canje' : type === 'PAGO' ? 'Pago' : 'Ambos'}
@@ -405,7 +402,7 @@ export default function RegistroCreador() {
                   onChange={handleInputChange}
                   className="mr-2"
                 />
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-slate-700">
                   Tengo equipo profesional
                 </span>
               </label>
@@ -414,18 +411,18 @@ export default function RegistroCreador() {
             {/* Plataformas */}
             <section>
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold text-gray-900">Plataformas sociales *</h2>
+                <h2 className="text-xl font-semibold text-slate-900">Plataformas sociales *</h2>
                 <button
                   type="button"
                   onClick={addPlatform}
-                  className="text-blue-600 hover:text-blue-800 font-medium"
+                  className="text-indigo-600 hover:text-indigo-700 font-medium"
                 >
                   + Agregar plataforma
                 </button>
               </div>
 
               {platforms.map((platform, index) => (
-                <div key={index} className="border border-gray-200 rounded-lg p-4 mb-4">
+                <div key={index} className="border border-slate-200 rounded-xl p-4 mb-4">
                   <div className="flex justify-between items-center mb-3">
                     <h3 className="font-medium">Plataforma {index + 1}</h3>
                     <button
@@ -438,7 +435,7 @@ export default function RegistroCreador() {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-800 mb-2">
+                      <label className="block text-sm font-medium text-slate-800 mb-2">
                         Plataforma *
                       </label>
                       <div className="flex flex-wrap gap-2">
@@ -447,10 +444,10 @@ export default function RegistroCreador() {
                             key={p.value}
                             type="button"
                             onClick={() => updatePlatform(index, 'platform', p.value)}
-                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-md border transition-colors ${
+                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
                               platform.platform === p.value
-                                ? 'bg-blue-600 text-white border-blue-600'
-                                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                                ? 'bg-indigo-600 text-white border-indigo-600'
+                                : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
                             }`}
                           >
                             <PlatformIcon platform={p.value} size={18} />
@@ -460,7 +457,7 @@ export default function RegistroCreador() {
                       </div>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-800 mb-1">
+                      <label className="block text-sm font-medium text-slate-800 mb-1">
                         Usuario *
                       </label>
                       <input
@@ -469,11 +466,11 @@ export default function RegistroCreador() {
                         onChange={(e) => updatePlatform(index, 'username', e.target.value)}
                         placeholder="@usuario"
                         required
-                        className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-800 mb-1">
+                      <label className="block text-sm font-medium text-slate-800 mb-1">
                         Seguidores *
                       </label>
                       <input
@@ -482,11 +479,11 @@ export default function RegistroCreador() {
                         onChange={(e) => updatePlatform(index, 'followers', e.target.value)}
                         required
                         min="0"
-                        className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-800 mb-1">
+                      <label className="block text-sm font-medium text-slate-800 mb-1">
                         Engagement Rate (%) *
                       </label>
                       <input
@@ -497,7 +494,7 @@ export default function RegistroCreador() {
                         required
                         min="0"
                         max="100"
-                        className="w-full px-3 py-2 bg-gray-50 border border-gray-400 rounded-md text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                       />
                     </div>
                   </div>
@@ -505,7 +502,7 @@ export default function RegistroCreador() {
               ))}
 
               {platforms.length === 0 && (
-                <p className="text-gray-500 text-sm">
+                <p className="text-slate-500 text-sm">
                   Haz clic en {'"'}Agregar plataforma{'"'} para comenzar
                 </p>  
               )}
@@ -515,13 +512,13 @@ export default function RegistroCreador() {
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors disabled:opacity-50"
+                className="bg-slate-800 hover:bg-slate-700 text-white px-8 py-3 rounded-lg font-medium transition-colors disabled:opacity-50"
               >
                 {loading ? 'Enviando...' : 'Enviar registro'}
               </button>
               <Link
                 href="/"
-                className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-8 py-3 rounded-lg font-medium transition-colors text-center"
+                className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-8 py-3 rounded-lg font-medium transition-colors text-center"
               >
                 Cancelar
               </Link>

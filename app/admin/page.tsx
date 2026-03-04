@@ -225,15 +225,12 @@ export default function AdminPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm">
+    <main className="min-h-screen bg-slate-50">
+      <header className="bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-900">Panel de Administración</h1>
-            <Link
-              href="/"
-              className="text-blue-600 hover:text-blue-800 font-medium"
-            >
+            <h1 className="text-xl font-bold text-white">Panel de Administración</h1>
+            <Link href="/" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">
               ← Volver al directorio
             </Link>
           </div>

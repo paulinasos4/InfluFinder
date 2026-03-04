@@ -11,6 +11,8 @@ const config: Config = {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        muted: '#848081',
+        dark: '#2d2d2d',
       },
     },
   },

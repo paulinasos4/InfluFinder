@@ -70,22 +70,19 @@ export default async function InfluencerProfile({ params }: PageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm">
+    <main className="min-h-screen bg-slate-50">
+      <header className="bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link
-            href="/"
-            className="text-blue-600 hover:text-blue-800 font-medium"
-          >
+          <Link href="/" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">
             ← Volver al directorio
           </Link>
         </div>
       </header>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
           {/* Header del perfil */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-12">
+          <div className="bg-slate-900 px-8 py-12">
             <div className="flex items-center gap-6">
               {influencer.photo ? (
                 <div className="relative w-[120px] h-[120px]">
@@ -98,22 +95,22 @@ export default async function InfluencerProfile({ params }: PageProps) {
                   />
                 </div>
               ) : (
-                <div className="w-[120px] h-[120px] rounded-full bg-white flex items-center justify-center border-4 border-white">
-                  <span className="text-blue-600 text-4xl font-bold">
+                <div className="w-[120px] h-[120px] rounded-full bg-slate-700 flex items-center justify-center border-4 border-slate-800">
+                  <span className="text-indigo-400 text-4xl font-bold">
                     {influencer.name.charAt(0).toUpperCase()}
                   </span>
                 </div>
               )}
               <div className="text-white">
                 <h1 className="text-3xl font-bold mb-2">{influencer.name}</h1>
-                <p className="text-blue-100 text-lg">
+                <p className="text-slate-300 text-lg">
                   {influencer.platforms[0]?.username && `@${influencer.platforms[0].username}`}
                 </p>
                 <div className="mt-2 flex gap-2">
-                  <span className="px-3 py-1 bg-white/20 rounded-full text-sm">
+                  <span className="px-3 py-1 bg-white/10 rounded-full text-sm">
                     {influencer.niche}
                   </span>
-                  <span className="px-3 py-1 bg-white/20 rounded-full text-sm">
+                  <span className="px-3 py-1 bg-white/10 rounded-full text-sm">
                     {influencer.department}
                   </span>
                 </div>
@@ -122,41 +119,41 @@ export default async function InfluencerProfile({ params }: PageProps) {
           </div>
 
           {/* Contenido del perfil */}
-          <div className="px-8 py-8 text-gray-900">
+          <div className="px-8 py-8 text-slate-900">
             {/* Biografía */}
             {influencer.bio && (
               <section className="mb-8">
-                <h2 className="text-xl font-semibold mb-3 text-gray-900">Biografía</h2>
-                <p className="text-gray-800 leading-relaxed">{influencer.bio}</p>
+                <h2 className="text-xl font-semibold mb-3 text-slate-900">Biografía</h2>
+                <p className="text-slate-700 leading-relaxed">{influencer.bio}</p>
               </section>
             )}
 
             {/* Métricas por plataforma */}
             <section className="mb-8">
-              <h2 className="text-xl font-semibold mb-4 text-gray-900">Métricas por plataforma</h2>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">Métricas por plataforma</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {influencer.platforms.map((platform) => (
                   <div
                     key={platform.id}
-                    className="border border-gray-300 rounded-lg p-4 hover:shadow-md transition-shadow bg-gray-50"
+                    className="border border-slate-200 rounded-xl p-4 hover:shadow-md transition-shadow bg-slate-50/50"
                   >
-                    <h3 className="font-semibold text-lg mb-2 flex items-center gap-2 text-gray-900">
+                    <h3 className="font-semibold text-lg mb-2 flex items-center gap-2 text-slate-900">
                       <PlatformIcon platform={platform.platform} size={22} />
                       {getPlatformLabel(platform.platform)}
                     </h3>
-                    <p className="text-sm text-gray-800 mb-1">
+                    <p className="text-sm text-slate-800 mb-1">
                       @{platform.username}
                     </p>
                     <div className="mt-3 space-y-2">
                       <div>
-                        <span className="text-sm text-gray-700">Seguidores:</span>
-                        <p className="text-lg font-semibold text-gray-900">
+                        <span className="text-sm text-slate-700">Seguidores:</span>
+                        <p className="text-lg font-semibold text-slate-900">
                           {formatNumber(platform.followers)}
                         </p>
                       </div>
                       <div>
-                        <span className="text-sm text-gray-700">Engagement Rate:</span>
-                        <p className="text-lg font-semibold text-blue-600">
+                        <span className="text-sm text-slate-700">Engagement Rate:</span>
+                        <p className="text-lg font-semibold text-indigo-600">
                           {platform.engagementRate.toFixed(2)}%
                         </p>
                       </div>
@@ -168,15 +165,15 @@ export default async function InfluencerProfile({ params }: PageProps) {
 
             {/* Información adicional */}
             <section className="mb-8">
-              <h2 className="text-xl font-semibold mb-4 text-gray-900">Información adicional</h2>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">Información adicional</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-medium text-gray-800 mb-2">Tipo de colaboración</h3>
+                  <h3 className="font-medium text-slate-800 mb-2">Tipo de colaboración</h3>
                   <div className="flex flex-wrap gap-2">
                     {influencer.collaborations.map((type) => (
                       <span
                         key={type}
-                        className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                        className="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm"
                       >
                         {getCollaborationLabel(type)}
                       </span>
@@ -186,15 +183,15 @@ export default async function InfluencerProfile({ params }: PageProps) {
 
                 {influencer.age && (
                   <div>
-                    <h3 className="font-medium text-gray-800 mb-2">Edad del creador</h3>
-                    <p className="text-gray-900">{influencer.age} años</p>
+                    <h3 className="font-medium text-slate-800 mb-2">Edad del creador</h3>
+                    <p className="text-slate-900">{influencer.age} años</p>
                   </div>
                 )}
 
                 {influencer.audienceGender && (
                   <div>
-                    <h3 className="font-medium text-gray-800 mb-2">Tipo de audiencia</h3>
-                    <p className="text-gray-900">
+                    <h3 className="font-medium text-slate-800 mb-2">Tipo de audiencia</h3>
+                    <p className="text-slate-900">
                       {getAudienceGenderLabel(influencer.audienceGender)}
                     </p>
                   </div>
@@ -202,24 +199,24 @@ export default async function InfluencerProfile({ params }: PageProps) {
 
                 {influencer.audienceAgeRange && (
                   <div>
-                    <h3 className="font-medium text-gray-800 mb-2">Rango etario de audiencia</h3>
-                    <p className="text-gray-900">
+                    <h3 className="font-medium text-slate-800 mb-2">Rango etario de audiencia</h3>
+                    <p className="text-slate-900">
                       {getAgeRangeLabel(influencer.audienceAgeRange)}
                     </p>
                   </div>
                 )}
 
                 <div>
-                  <h3 className="font-medium text-gray-800 mb-2">Equipo profesional</h3>
-                  <p className="text-gray-900">
+                  <h3 className="font-medium text-slate-800 mb-2">Equipo profesional</h3>
+                  <p className="text-slate-900">
                     {influencer.hasProfessionalTeam ? 'Sí' : 'No'}
                   </p>
                 </div>
 
                 {influencer.influencerType && (
                   <div>
-                    <h3 className="font-medium text-gray-800 mb-2">Tipo de influencer</h3>
-                    <p className="text-gray-900">
+                    <h3 className="font-medium text-slate-800 mb-2">Tipo de influencer</h3>
+                    <p className="text-slate-900">
                       {influencer.influencerType === 'MICRO' ? 'Micro influencer' : 'Macro influencer'}
                     </p>
                   </div>
@@ -228,15 +225,15 @@ export default async function InfluencerProfile({ params }: PageProps) {
             </section>
 
             {/* Contacto */}
-            <section className="border-t border-gray-200 pt-6">
-              <h2 className="text-xl font-semibold mb-4 text-gray-900">Contacto</h2>
+            <section className="border-t border-slate-200 pt-6">
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">Contacto</h2>
               <div className="space-y-2">
-                <p className="text-gray-800">
-                  <span className="font-medium text-gray-900">Email:</span> {influencer.email}
+                <p className="text-slate-800">
+                  <span className="font-medium text-slate-900">Email:</span> {influencer.email}
                 </p>
                 {influencer.phone && (
-                  <p className="text-gray-800">
-                    <span className="font-medium text-gray-900">Teléfono:</span> {influencer.phone}
+                  <p className="text-slate-800">
+                    <span className="font-medium text-slate-900">Teléfono:</span> {influencer.phone}
                   </p>
                 )}
               </div>

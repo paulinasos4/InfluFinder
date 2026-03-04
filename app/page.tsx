@@ -25,9 +25,9 @@ export default async function Home() {
         </header>
 
         {/* Hero Section — bloque separado con puntas circulares */}
-        <section className="rounded-2xl overflow-hidden shadow-xl py-16 md:py-24 bg-[#f7af9d]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="font-hero text-5xl md:text-6xl lg:text-[72px] mb-6 tracking-tight leading-tight text-white uppercase">
+        <section className="rounded-2xl overflow-hidden shadow-xl py-16 md:py-24 bg-[#c4dafa]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-[#c4dafa]">
+            <h1 className="font-hero text-5xl md:text-6xl lg:text-[72px] mb-6 tracking-tight leading-tight text-[#fc6998] uppercase">
               Encontrá el influencer ideal para tu marca
             </h1>
             <p className="text-xl md:text-2xl text-gray-100 max-w-2xl mx-auto font-medium">

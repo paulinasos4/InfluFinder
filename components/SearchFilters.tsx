@@ -30,7 +30,7 @@ const COLLABORATION_TYPES = [
   { value: 'AMBOS', label: 'Ambos' }
 ]
 
-const inputClass = "w-full px-3 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+const inputClass = "w-full px-3 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900 text-sm"
 const labelClass = "block text-sm font-medium text-slate-700 mb-1.5"
 
 export default function SearchFilters() {
@@ -94,7 +94,7 @@ export default function SearchFilters() {
   }
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 md:p-8">
+    <div className="p-6 md:p-8 bg-[#e8f5ff]">
       <h3 className="text-lg font-semibold text-slate-900 mb-6">Filtros de búsqueda</h3>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -163,8 +163,8 @@ export default function SearchFilters() {
               onClick={() => handlePlatformToggle(platform.value)}
               className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border text-sm font-medium transition-colors ${
                 (filters.platforms as string[]).includes(platform.value)
-                  ? 'bg-indigo-600 text-white border-indigo-600'
-                  : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
+                  ? 'bg-slate-900 text-white border-slate-900'
+                  : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 focus:ring-2 focus:ring-slate-900 focus:ring-offset-1'
               }`}
             >
               <PlatformIcon platform={platform.value} size={16} className="flex-shrink-0" />
@@ -175,7 +175,7 @@ export default function SearchFilters() {
       </div>
 
       <div className="mt-6 flex gap-3">
-        <button onClick={applyFilters} className="bg-[#3f3e3e] hover:bg-[#353434] text-white px-6 py-2.5 rounded-lg font-medium text-sm transition-colors">
+        <button onClick={applyFilters} className="bg-slate-900 hover:bg-slate-800 text-white px-6 py-2.5 rounded-lg font-medium text-sm transition-colors">
           Aplicar filtros
         </button>
         <button onClick={clearFilters} className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-2.5 rounded-lg font-medium text-sm transition-colors">

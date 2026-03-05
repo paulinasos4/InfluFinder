@@ -60,7 +60,7 @@ export default function InfluencerList() {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-12 text-center">
+      <div className="p-12 text-center">
         <p className="text-slate-500">Cargando influencers...</p>
       </div>
     )
@@ -68,14 +68,14 @@ export default function InfluencerList() {
 
   if (influencers.length === 0) {
     return (
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-12 text-center">
+      <div className="p-12 text-center">
         <p className="text-slate-500">No se encontraron influencers con los filtros seleccionados.</p>
       </div>
     )
   }
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+    <div className="overflow-hidden">
       <div className="overflow-x-auto">
         <table className="min-w-full">
           <thead>

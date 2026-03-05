@@ -57,6 +57,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Crear el influencer con estado PENDING
+    // No enviamos profileUrl para compatibilidad con bases que aún no tienen esa columna (ej. producción)
+    const platformCreate = platforms.map((p: any) => ({
+      platform: p.platform,
+      username: p.username,
+      followers: p.followers,
+      engagementRate: p.engagementRate,
+    }))
+
     const influencer = await prisma.influencer.create({
       data: {
         name,
@@ -73,19 +81,9 @@ export async function POST(request: NextRequest) {
         influencerType: influencerType || null,
         collaborations: collab,
         status: 'PENDING',
-        platforms: {
-          create: platforms.map((p: any) => ({
-            platform: p.platform,
-            username: p.username,
-            profileUrl: p.profileUrl || null,
-            followers: p.followers,
-            engagementRate: p.engagementRate,
-          }))
-        }
+        platforms: { create: platformCreate }
       },
-      include: {
-        platforms: true
-      }
+      include: { platforms: true }
     })
 
     return NextResponse.json(
@@ -97,7 +95,16 @@ export async function POST(request: NextRequest) {
     )
   } catch (error: any) {
     console.error('Error creating influencer:', error)
-    const message = error?.message || 'Error al crear el registro. Intenta nuevamente.'
+    let message = 'Error al registrar. Intenta nuevamente.'
+    if (error?.message) {
+      if (error.message.includes('Unique constraint') || error.message.includes('unique')) {
+        message = 'Este email ya está registrado.'
+      } else if (error.message.includes('connect') || error.message.includes('database')) {
+        message = 'Error de conexión con la base de datos. Revisá la configuración en producción.'
+      } else {
+        message = error.message
+      }
+    }
     return NextResponse.json(
       { error: message },
       { status: 500 }

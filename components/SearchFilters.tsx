@@ -174,11 +174,11 @@ export default function SearchFilters() {
         </div>
       </div>
 
-      <div className="mt-6 flex gap-3">
-        <button onClick={applyFilters} className="bg-[#3f3e3e] hover:bg-[#353434] text-white px-6 py-2.5 rounded-lg font-medium text-sm transition-colors">
+      <div className="mt-6 flex flex-col sm:flex-row gap-3">
+        <button onClick={applyFilters} className="bg-[#3f3e3e] hover:bg-[#353434] text-white px-6 py-3 sm:py-2.5 rounded-lg font-medium text-sm transition-colors w-full sm:w-auto">
           Aplicar filtros
         </button>
-        <button onClick={clearFilters} className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-2.5 rounded-lg font-medium text-sm transition-colors">
+        <button onClick={clearFilters} className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-3 sm:py-2.5 rounded-lg font-medium text-sm transition-colors w-full sm:w-auto">
           Limpiar
         </button>
       </div>

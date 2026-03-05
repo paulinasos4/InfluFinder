@@ -6,7 +6,7 @@ import { Suspense } from 'react'
 export default async function Home() {
   return (
     <main className="min-h-screen bg-[#f4e8f3]">
-      <div className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] pt-3 pb-4 md:pt-[1cm] md:pb-[1cm] space-y-3 md:space-y-4">
+      <div className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] pt-4 pb-4 md:pt-[1cm] md:pb-[1cm] space-y-3 md:space-y-4">
         {/* Header — barra fija al hacer scroll */}
         <header className="sticky top-0 z-50 rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl bg-slate-900">
           <div className="w-full px-4 sm:px-6 md:px-[4cm] py-3 md:py-4">

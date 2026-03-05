@@ -94,7 +94,57 @@ export default function InfluencerList() {
 
   return (
     <div className="overflow-hidden">
-      <div className="overflow-x-auto">
+      {/* Vista mobile: tarjetas */}
+      <div className="md:hidden divide-y divide-slate-200">
+        {influencers.map((influencer) => {
+          const platforms = influencer.platforms ?? []
+          const maxFollowers = platforms.reduce((max, p) => Math.max(max, p.followers), 0)
+          const avgEngagement = platforms.length > 0
+            ? platforms.reduce((sum, p) => sum + p.engagementRate, 0) / platforms.length
+            : 0
+          return (
+            <Link key={influencer.id} href={`/influencer/${influencer.id}`} className="block p-4 hover:bg-slate-50/50 transition-colors">
+              <div className="flex items-center gap-4">
+                <div className="flex-shrink-0 h-14 w-14 relative rounded-full overflow-hidden bg-slate-100">
+                  {influencer.photo ? (
+                    <Image src={influencer.photo} alt={influencer.name} fill className="object-cover" sizes="56px" />
+                  ) : (
+                    <div className="h-full w-full flex items-center justify-center">
+                      <span className="text-slate-500 text-lg font-medium">{influencer.name.charAt(0).toUpperCase()}</span>
+                    </div>
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-medium text-slate-900 truncate">{influencer.name}</div>
+                  <div className="text-sm text-slate-500 truncate">@{(platforms[0]?.username) || 'N/A'}</div>
+                  <div className="flex flex-wrap gap-1 mt-1">
+                    {platforms.map((p) => (
+                      <span key={p.id} className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-xs font-medium rounded bg-slate-100 text-slate-700">
+                        <PlatformIcon platform={p.platform} size={10} />
+                        {p.platform === 'INSTAGRAM' ? 'IG' : p.platform === 'TIKTOK' ? 'TT' : p.platform === 'FACEBOOK' ? 'FB' : 'YT'}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-between items-center mt-3 pt-3 border-t border-slate-100">
+                <div>
+                  <span className="text-xs text-slate-500">Seguidores</span>
+                  <p className="text-sm font-semibold text-slate-900">{formatNumber(maxFollowers)}</p>
+                </div>
+                <div>
+                  <span className="text-xs text-slate-500">Engagement</span>
+                  <p className="text-sm font-semibold text-slate-900">{avgEngagement.toFixed(2)}%</p>
+                </div>
+                <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-indigo-50 text-indigo-700">{influencer.niche}</span>
+              </div>
+            </Link>
+          )
+        })}
+      </div>
+
+      {/* Vista desktop: tabla */}
+      <div className="hidden md:block overflow-x-auto">
         <table className="min-w-full">
           <thead>
             <tr className="border-b border-slate-200 bg-slate-50/50">

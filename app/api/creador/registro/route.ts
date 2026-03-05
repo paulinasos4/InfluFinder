@@ -77,6 +77,7 @@ export async function POST(request: NextRequest) {
           create: platforms.map((p: any) => ({
             platform: p.platform,
             username: p.username,
+            profileUrl: p.profileUrl || null,
             followers: p.followers,
             engagementRate: p.engagementRate,
           }))

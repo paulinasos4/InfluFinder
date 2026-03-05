@@ -79,6 +79,7 @@ model PlatformData {
   influencerId      String
   platform          Platform
   username          String
+  profileUrl        String?           // URL del perfil para que la marca pueda entrar directo
   followers         Int
   engagementRate    Float
   influencer        Influencer        @relation(fields: [influencerId], references: [id], onDelete: Cascade)

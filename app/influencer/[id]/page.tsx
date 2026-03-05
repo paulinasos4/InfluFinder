@@ -144,6 +144,16 @@ export default async function InfluencerProfile({ params }: PageProps) {
                     <p className="text-sm text-slate-800 mb-1">
                       @{platform.username}
                     </p>
+                    {platform.profileUrl && (
+                      <a
+                        href={platform.profileUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm font-medium text-slate-900 hover:text-slate-700 mb-3"
+                      >
+                        Ir a {getPlatformLabel(platform.platform)} →
+                      </a>
+                    )}
                     <div className="mt-3 space-y-2">
                       <div>
                         <span className="text-sm text-slate-700">Seguidores:</span>

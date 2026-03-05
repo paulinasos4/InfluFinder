@@ -28,6 +28,7 @@ const PLATFORMS = [
 interface PlatformFormData {
   platform: string
   username: string
+  profileUrl: string
   followers: string
   engagementRate: string
 }
@@ -82,6 +83,7 @@ export default function RegistroCreador() {
     setPlatforms([...platforms, {
       platform: '',
       username: '',
+      profileUrl: '',
       followers: '',
       engagementRate: ''
     }])
@@ -110,7 +112,7 @@ export default function RegistroCreador() {
         return
       }
 
-      // Validar que todas las plataformas estén completas
+      // Validar que todas las plataformas estén completas (profileUrl es opcional pero recomendado)
       for (const platform of platforms) {
         if (!platform.platform || !platform.username || !platform.followers || !platform.engagementRate) {
           setMessage({ type: 'error', text: 'Completa todos los campos de las plataformas' })
@@ -129,6 +131,7 @@ export default function RegistroCreador() {
           platforms: platforms.map(p => ({
             platform: p.platform,
             username: p.username,
+            profileUrl: p.profileUrl?.trim() || null,
             followers: parseInt(p.followers),
             engagementRate: parseFloat(p.engagementRate)
           }))
@@ -466,8 +469,21 @@ export default function RegistroCreador() {
                         onChange={(e) => updatePlatform(index, 'username', e.target.value)}
                         placeholder="@usuario"
                         required
-                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
                       />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-800 mb-1">
+                        URL del perfil
+                      </label>
+                      <input
+                        type="url"
+                        value={platform.profileUrl}
+                        onChange={(e) => updatePlatform(index, 'profileUrl', e.target.value)}
+                        placeholder="https://instagram.com/tu_usuario"
+                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+                      />
+                      <p className="text-slate-500 text-xs mt-1">La marca podrá hacer clic y entrar directo a tu perfil</p>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-800 mb-1">

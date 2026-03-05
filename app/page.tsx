@@ -6,10 +6,11 @@ import { Suspense } from 'react'
 export default async function Home() {
   return (
     <main className="min-h-screen bg-[#f4e8f3]">
-      <div className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] pt-4 pb-4 md:pt-[1cm] md:pb-[1cm] space-y-3 md:space-y-4">
-        {/* Header — barra fija al hacer scroll */}
-        <header className="sticky top-0 z-50 rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl bg-slate-900">
-          <div className="w-full px-4 sm:px-6 md:px-[4cm] py-3 md:py-4">
+      {/* Header — fijo arriba al hacer scroll */}
+      <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-[1cm] pt-3 md:pt-4">
+        <div className="w-full mx-auto">
+          <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl bg-slate-900">
+            <div className="w-full px-4 sm:px-6 lg:px-8 py-3 md:py-4">
             <div className="flex justify-between items-center">
               <Link href="/" className="flex items-center gap-2">
                 <span className="text-xl font-bold text-white tracking-tight">Influ-finder</span>
@@ -22,11 +23,14 @@ export default async function Home() {
               </Link>
             </div>
           </div>
-        </header>
+        </div>
+        </div>
+      </header>
 
+      <div className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] pt-24 md:pt-28 pb-14 md:pb-16 space-y-3 md:space-y-4">
         {/* Hero Section — en móvil más compacto, en desktop se extiende */}
         <section className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl py-8 sm:py-12 md:py-16 lg:py-24 min-h-0 md:min-h-[70vh] bg-[#c4dafa]">
-          <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 text-center pb-4 md:pb-[0.5cm] bg-[#c4dafa]">
+          <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 text-center pb-6 bg-[#c4dafa]">
             <h1 className="font-hero text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[72px] mb-3 md:mb-6 tracking-tight leading-tight text-[#fc6998] uppercase">
               Encontrá el influencer ideal para tu marca
             </h1>
@@ -37,8 +41,8 @@ export default async function Home() {
         </section>
       </div>
 
-      {/* Módulo unificado: en móvil sin superposición, en desktop superpuesto */}
-      <section className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] mt-4 md:-mt-[28rem] relative z-10 flex justify-center pb-8 md:pb-20">
+      {/* Módulo unificado: superpuesto al hero en móvil y desktop */}
+      <section className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] -mt-10 sm:-mt-14 md:-mt-[28rem] relative z-10 flex justify-center pb-8 md:pb-20">
         <div className="w-full max-w-7xl bg-white rounded-xl md:rounded-2xl border border-slate-200 shadow-lg md:shadow-xl overflow-hidden">
           <Suspense fallback={<div className="p-8 animate-pulse h-72" />}>
             <SearchFilters />

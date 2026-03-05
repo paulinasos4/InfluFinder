@@ -94,10 +94,10 @@ export default function SearchFilters() {
   }
 
   return (
-    <div className="p-6 md:p-8 bg-[#e8f5ff]">
-      <h3 className="text-lg font-semibold text-slate-900 mb-6 uppercase">Filtros de búsqueda</h3>
+    <div className="p-4 sm:p-6 md:p-8 bg-[#e8f5ff]">
+      <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-4 sm:mb-6 uppercase">Filtros de búsqueda</h3>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         <div>
           <label className={labelClass}>Nicho / Categoría</label>
           <select value={filters.niche} onChange={(e) => handleFilterChange('niche', e.target.value)} className={inputClass}>
@@ -153,7 +153,7 @@ export default function SearchFilters() {
         </div>
       </div>
 
-      <div className="mt-5 pt-5 border-t border-slate-100">
+      <div className="mt-4 sm:mt-5 pt-4 sm:pt-5 border-t border-slate-200">
         <label className={labelClass}>Plataformas</label>
         <div className="flex flex-wrap gap-2">
           {PLATFORMS.map(platform => (

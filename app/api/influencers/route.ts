@@ -34,8 +34,10 @@ export async function GET(request: NextRequest) {
 
     if (ageMin || ageMax) {
       where.age = {}
-      if (ageMin) where.age.gte = parseInt(ageMin)
-      if (ageMax) where.age.lte = parseInt(ageMax)
+      const aMin = parseInt(ageMin || '', 10)
+      const aMax = parseInt(ageMax || '', 10)
+      if (ageMin && !Number.isNaN(aMin)) where.age.gte = aMin
+      if (ageMax && !Number.isNaN(aMax)) where.age.lte = aMax
     }
 
     if (collaborationType) {
@@ -54,14 +56,18 @@ export async function GET(request: NextRequest) {
 
     if (followersMin || followersMax) {
       platformWhere.followers = {}
-      if (followersMin) platformWhere.followers.gte = parseInt(followersMin)
-      if (followersMax) platformWhere.followers.lte = parseInt(followersMax)
+      const fMin = parseInt(followersMin || '', 10)
+      const fMax = parseInt(followersMax || '', 10)
+      if (followersMin && !Number.isNaN(fMin)) platformWhere.followers.gte = fMin
+      if (followersMax && !Number.isNaN(fMax)) platformWhere.followers.lte = fMax
     }
 
     if (engagementMin || engagementMax) {
       platformWhere.engagementRate = {}
-      if (engagementMin) platformWhere.engagementRate.gte = parseFloat(engagementMin)
-      if (engagementMax) platformWhere.engagementRate.lte = parseFloat(engagementMax)
+      const eMin = parseFloat(engagementMin || '')
+      const eMax = parseFloat(engagementMax || '')
+      if (engagementMin && !Number.isNaN(eMin)) platformWhere.engagementRate.gte = eMin
+      if (engagementMax && !Number.isNaN(eMax)) platformWhere.engagementRate.lte = eMax
     }
 
     // Buscar influencers con filtros (select explícito de platforms para compatibilidad si falta columna profileUrl en prod)
@@ -93,10 +99,11 @@ export async function GET(request: NextRequest) {
     })
 
     return NextResponse.json(filteredInfluencers)
-  } catch (error) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Error al obtener influencers'
     console.error('Error fetching influencers:', error)
     return NextResponse.json(
-      { error: 'Error al obtener influencers' },
+      { error: 'Error al obtener influencers', detail: message },
       { status: 500 }
     )
   }

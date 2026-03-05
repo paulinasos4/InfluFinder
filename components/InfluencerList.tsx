@@ -29,21 +29,30 @@ export default function InfluencerList() {
   const searchParams = useSearchParams()
   const [influencers, setInfluencers] = useState<Influencer[]>([])
   const [loading, setLoading] = useState(true)
+  const [fetchError, setFetchError] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchInfluencers = async () => {
       setLoading(true)
+      setFetchError(null)
       try {
         const params = new URLSearchParams(searchParams.toString())
         const response = await fetch(`/api/influencers?${params.toString()}`)
         const data = await response.json()
-        if (!response.ok || !Array.isArray(data)) {
+        if (!response.ok) {
+          setFetchError((data?.error as string) || 'Error al cargar el directorio.')
+          setInfluencers([])
+          return
+        }
+        if (!Array.isArray(data)) {
+          setFetchError('Error al cargar el directorio.')
           setInfluencers([])
           return
         }
         setInfluencers(data)
       } catch (error) {
         console.error('Error fetching influencers', error)
+        setFetchError('No se pudo conectar. Revisá tu conexión o intentá más tarde.')
         setInfluencers([])
       } finally {
         setLoading(false)
@@ -62,6 +71,15 @@ export default function InfluencerList() {
     return (
       <div className="p-12 text-center">
         <p className="text-slate-500">Cargando influencers...</p>
+      </div>
+    )
+  }
+
+  if (fetchError) {
+    return (
+      <div className="p-12 text-center">
+        <p className="text-red-600 font-medium mb-2">{fetchError}</p>
+        <p className="text-slate-500 text-sm">Si el problema sigue en influ-finder.com, puede ser la base de datos de producción. Probá más tarde o contactá al administrador.</p>
       </div>
     )
   }

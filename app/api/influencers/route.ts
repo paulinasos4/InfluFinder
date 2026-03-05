@@ -64,12 +64,19 @@ export async function GET(request: NextRequest) {
       if (engagementMax) platformWhere.engagementRate.lte = parseFloat(engagementMax)
     }
 
-    // Buscar influencers con filtros
+    // Buscar influencers con filtros (select explícito de platforms para compatibilidad si falta columna profileUrl en prod)
     const influencers = await prisma.influencer.findMany({
       where,
       include: {
         platforms: {
-          where: Object.keys(platformWhere).length > 0 ? platformWhere : undefined
+          where: Object.keys(platformWhere).length > 0 ? platformWhere : undefined,
+          select: {
+            id: true,
+            platform: true,
+            username: true,
+            followers: true,
+            engagementRate: true
+          }
         }
       },
       orderBy: {

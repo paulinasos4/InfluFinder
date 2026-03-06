@@ -159,7 +159,7 @@ export default function RegistroCreador() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f4e8f3]">
+    <main className="min-h-screen bg-[#faf8f5]">
       <header className="bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link href="/" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">

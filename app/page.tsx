@@ -5,12 +5,19 @@ import { Suspense } from 'react'
 
 export default async function Home() {
   return (
-    <main className="min-h-screen bg-[#f4e8f3]">
-      {/* Header — fijo arriba al hacer scroll */}
-      <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-[1cm] pt-3 md:pt-4">
+    <main className="min-h-screen bg-[#faf8f5]">
+      {/* Barra de info arriba de todo */}
+      <div className="fixed top-0 left-0 right-0 z-[60] bg-[#EEE0F3] py-2.5 text-center">
+        <Link href="/como-funciona" className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors inline-flex items-center gap-1">
+          ¿Cómo funciona? Conocé nuestro objetivo →
+        </Link>
+      </div>
+
+      {/* Header — fijo debajo de la barra */}
+      <header className="fixed top-10 left-0 right-0 z-50 px-4 sm:px-6 md:px-[1cm] pt-2 md:pt-3">
         <div className="w-full mx-auto">
-          <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl bg-slate-900">
-            <div className="w-full px-4 sm:px-6 lg:px-8 py-3 md:py-4">
+          <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl bg-[#000020]">
+            <div className="w-full px-3 sm:px-4 lg:px-6 py-2 md:py-3">
             <div className="flex justify-between items-center">
               <Link href="/" className="flex items-center gap-2">
                 <span className="text-xl font-bold text-white tracking-tight">Influ-finder</span>
@@ -27,22 +34,22 @@ export default async function Home() {
         </div>
       </header>
 
-      <div className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] pt-24 md:pt-28 pb-14 md:pb-16 space-y-3 md:space-y-4">
+      <div className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] pt-[7.5rem] md:pt-[8.25rem] pb-6 md:pb-8 space-y-3 md:space-y-4">
         {/* Hero Section — en móvil más compacto, en desktop se extiende */}
-        <section className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl py-8 sm:py-12 md:py-16 lg:py-24 min-h-0 md:min-h-[70vh] bg-[#c4dafa]">
-          <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 text-center pb-6 bg-[#c4dafa]">
-            <h1 className="font-hero text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[72px] mb-3 md:mb-6 tracking-tight leading-tight text-[#fc6998] uppercase">
+        <section className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl py-8 sm:py-10 md:py-14 lg:py-16 min-h-0 md:min-h-[70vh] bg-hero-moodboard">
+          <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 text-center pb-6 bg-transparent mt-4 md:mt-6">
+            <h1 className="font-hero font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] 2xl:text-[6rem] mb-3 md:mb-6 tracking-tight leading-tight text-[#f99aaa] uppercase">
               Encontrá el influencer ideal para tu marca
             </h1>
-            <p className="text-xs sm:text-sm md:text-base text-slate-900 max-w-2xl mx-auto font-light uppercase">
-              Buscá, filtrá y analizá según su audiencia y métricas
+<p className="text-xs sm:text-sm md:text-base text-white max-w-2xl mx-auto font-light uppercase">
+            Buscá, filtrá y analizá según su audiencia y métricas
             </p>
           </div>
         </section>
       </div>
 
       {/* Módulo unificado: superpuesto al hero en móvil y desktop */}
-      <section className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] -mt-10 sm:-mt-14 md:-mt-[28rem] relative z-10 flex justify-center pb-8 md:pb-20">
+      <section className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] -mt-10 sm:-mt-14 md:-mt-[26rem] relative z-10 flex justify-center pb-8 md:pb-20">
         <div className="w-full max-w-7xl bg-white rounded-xl md:rounded-2xl border border-slate-200 shadow-lg md:shadow-xl overflow-hidden">
           <Suspense fallback={<div className="p-8 animate-pulse h-72" />}>
             <SearchFilters />

@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #f4e8f3;
+  --background: #faf8f5;
   --foreground: #0f172a;
   --modash-primary: #6366f1;
   --modash-dark: #0f172a;
@@ -25,6 +25,23 @@ body {
 
 .font-hero {
   font-family: 'Bebas Neue', Arial, sans-serif;
+}
+
+/* Fondo con foto del mood board */
+.bg-hero-moodboard {
+  background-image: url('/fondo_collage.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Textura con imagen sobre celeste */
+.bg-texture-celeste {
+  background-color: #c4dafa;
+  background-image:
+    linear-gradient(rgba(196, 218, 250, 0.45), rgba(196, 218, 250, 0.45)),
+    url('/hero-texture.png');
+  background-size: cover;
+  background-position: center;
 }
 
 @layer utilities {

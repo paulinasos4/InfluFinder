@@ -31,7 +31,7 @@ const COLLABORATION_TYPES = [
 ]
 
 const inputClass = "w-full px-3 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900 text-sm"
-const labelClass = "block text-sm font-medium text-slate-700 mb-1.5"
+const labelClass = "block text-sm font-medium text-[#000020] mb-1.5"
 
 export default function SearchFilters() {
   const router = useRouter()
@@ -94,8 +94,8 @@ export default function SearchFilters() {
   }
 
   return (
-    <div className="p-4 sm:p-6 md:p-8 bg-[#e8f5ff]">
-      <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-4 sm:mb-6 uppercase">Filtros de búsqueda</h3>
+    <div className="p-4 sm:p-6 md:p-8 bg-white">
+      <h3 className="text-base sm:text-lg font-semibold text-[#000020] mb-4 sm:mb-6 uppercase">Filtros de búsqueda</h3>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         <div>

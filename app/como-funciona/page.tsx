@@ -31,20 +31,23 @@ export default function ComoFuncionaPage() {
         </div>
       </header>
 
-      {/* Sección 1 — naranja estática como base, violeta y beige se deslizan arriba y la cubren */}
-      <section className="min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-[1cm] pt-[7.5rem] md:pt-[8.25rem] py-16 mt-24 md:mt-32 mx-4 sm:mx-6 md:mx-8 rounded-3xl bg-[#f97316] sticky top-0 z-10 shadow-2xl">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black uppercase leading-tight mb-6">
-            ¿Cómo funciona?
-          </h1>
-          <p className="text-lg sm:text-xl text-black/90 leading-relaxed">
-            influ-finder es el directorio de creadores e influencers de Uruguay. Las marcas pueden buscar, filtrar y analizar perfiles según audiencia, métricas y tipo de colaboración.
-          </p>
-        </div>
+      {/* Naranja fija — mismo tamaño y posición que violeta/beige */}
+      <section className="fixed top-[7.5rem] md:top-[8.25rem] left-4 right-4 sm:left-6 sm:right-6 md:left-[1cm] md:right-[1cm] z-10 flex flex-col justify-center py-16 rounded-3xl bg-[#f97316] shadow-2xl h-[calc(100vh-7.5rem)] md:h-[calc(100vh-8.25rem)]">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black uppercase leading-tight mb-6">
+              ¿Cómo funciona?
+            </h1>
+            <p className="text-lg sm:text-xl text-black/90 leading-relaxed">
+              influ-finder es el directorio de creadores e influencers de Uruguay. Las marcas pueden buscar, filtrar y analizar perfiles según audiencia, métricas y tipo de colaboración.
+            </p>
+          </div>
       </section>
 
-      {/* Sección 2 — violeta, apilada: asoma la naranja arriba (solo margen superior) */}
-      <section className="min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-[1cm] py-16 mt-12 md:mt-16 mx-4 sm:mx-6 md:mx-8 bg-[#7c3aed] rounded-3xl sticky top-0 z-20 shadow-2xl">
+      {/* Espacio para scroll — la naranja queda fija, violeta y beige suben al deslizar */}
+      <div className="min-h-screen" aria-hidden />
+
+      {/* Sección 2 — violeta, se superpone arriba: franja de naranja visible (top más bajo para crear espacio) */}
+      <section className="flex flex-col justify-center px-4 sm:px-6 md:px-[1cm] py-16 mt-6 md:mt-8 mx-4 sm:mx-6 md:mx-8 bg-[#7c3aed] rounded-3xl sticky top-[9rem] md:top-[10.5rem] z-20 shadow-2xl h-[calc(100vh-9rem)] md:h-[calc(100vh-10.5rem)]">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase leading-tight mb-6">
             Nuestro objetivo
@@ -55,8 +58,8 @@ export default function ComoFuncionaPage() {
         </div>
       </section>
 
-      {/* Sección 3 — beige, apilada: asoman violeta y naranja arriba (solo margen superior) */}
-      <section className="min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-[1cm] py-16 mt-20 md:mt-24 mx-4 sm:mx-6 md:mx-8 bg-[#e8e0d5] rounded-3xl sticky top-0 z-30 shadow-2xl">
+      {/* Sección 3 — beige, se superpone arriba: franjas de violeta y naranja visibles */}
+      <section className="flex flex-col justify-center px-4 sm:px-6 md:px-[1cm] py-16 mt-12 md:mt-16 mx-4 sm:mx-6 md:mx-8 bg-[#e8e0d5] rounded-3xl sticky top-[7.5rem] md:top-[8.25rem] z-30 shadow-2xl h-[calc(100vh-10.5rem)] md:h-[calc(100vh-12.25rem)]">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 uppercase leading-tight mb-6">
             Un solo lugar para encontrar

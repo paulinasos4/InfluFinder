@@ -144,9 +144,9 @@ export default async function InfluencerProfile({ params }: PageProps) {
                     <p className="text-sm text-slate-800 mb-1">
                       @{platform.username}
                     </p>
-                    {platform.profileUrl && (
+                    {(platform as { profileUrl?: string | null }).profileUrl && (
                       <a
-                        href={platform.profileUrl}
+                        href={(platform as { profileUrl?: string | null }).profileUrl!}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-sm font-medium text-slate-900 hover:text-slate-700 mb-3"

@@ -53,6 +53,8 @@ export default function RegistroCreador() {
     collaborationTypes: [] as string[],
   })
   const [platforms, setPlatforms] = useState<PlatformFormData[]>([])
+  const [profileImageFile, setProfileImageFile] = useState<File | null>(null)
+  const [profileImagePreview, setProfileImagePreview] = useState<string | null>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
@@ -121,6 +123,24 @@ export default function RegistroCreador() {
         }
       }
 
+      let photoUrl = formData.photo?.trim() || null
+      if (profileImageFile) {
+        const uploadForm = new FormData()
+        uploadForm.append('file', profileImageFile)
+        const uploadRes = await fetch('/api/upload', {
+          method: 'POST',
+          body: uploadForm,
+        })
+        if (!uploadRes.ok) {
+          const uploadData = await uploadRes.json()
+          setMessage({ type: 'error', text: uploadData.error || 'Error al subir la imagen' })
+          setLoading(false)
+          return
+        }
+        const { url } = await uploadRes.json()
+        photoUrl = url
+      }
+
       const response = await fetch('/api/creador/registro', {
         method: 'POST',
         headers: {
@@ -128,6 +148,7 @@ export default function RegistroCreador() {
         },
         body: JSON.stringify({
           ...formData,
+          photo: photoUrl,
           platforms: platforms.map(p => ({
             platform: p.platform,
             username: p.username,
@@ -233,16 +254,31 @@ export default function RegistroCreador() {
 
                 <div>
                   <label className="block text-sm font-medium text-slate-800 mb-1">
-                    URL de foto de perfil
+                    Imagen de perfil
                   </label>
                   <input
-                    type="url"
-                    name="photo"
-                    value={formData.photo}
-                    onChange={handleInputChange}
-                    placeholder="https://..."
-                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,image/gif"
+                    onChange={(e) => {
+                      const f = e.target.files?.[0]
+                      if (f) {
+                        setProfileImageFile(f)
+                        const reader = new FileReader()
+                        reader.onloadend = () => setProfileImagePreview(reader.result as string)
+                        reader.readAsDataURL(f)
+                      } else {
+                        setProfileImageFile(null)
+                        setProfileImagePreview(null)
+                      }
+                    }}
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   />
+                  {profileImagePreview && (
+                    <div className="mt-2">
+                      <img src={profileImagePreview} alt="Vista previa" className="h-24 w-24 rounded-lg object-cover border border-slate-200" />
+                    </div>
+                  )}
+                  <p className="text-slate-500 text-xs mt-1">JPG, PNG, WebP o GIF. Máx. 5 MB. Esta imagen aparecerá en tu perfil.</p>
                 </div>
 
                 <div>

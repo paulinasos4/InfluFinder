@@ -1,6 +1,7 @@
 import SearchFilters from '@/components/SearchFilters'
 import InfluencerList from '@/components/InfluencerList'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Suspense } from 'react'
 
 export default async function Home() {
@@ -13,13 +14,14 @@ export default async function Home() {
         </Link>
       </div>
 
-      {/* Header — fijo debajo de la barra */}
-      <header className="fixed top-10 left-0 right-0 z-50 px-4 sm:px-6 md:px-[1cm] pt-2 md:pt-3">
+      {/* Header — centrado entre barra lavanda y contenido */}
+      <header className="fixed left-0 right-0 z-50 px-4 sm:px-6 md:px-[1cm] top-[3.25rem] md:top-[3.5rem] pt-0">
         <div className="w-full mx-auto">
           <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl bg-[#000020]">
-            <div className="w-full px-3 sm:px-4 lg:px-6 py-2 md:py-3">
+            <div className="w-full px-3 sm:px-4 lg:px-6 py-2 md:py-2.5">
             <div className="flex justify-between items-center">
               <Link href="/" className="flex items-center gap-2">
+                <Image src="/logo3.0.jpg" alt="influ-finder" width={44} height={44} className="rounded-lg object-contain h-9 w-9 sm:h-10 sm:w-10" />
                 <span className="text-xl font-bold text-white tracking-tight">influ-finder</span>
               </Link>
               <Link

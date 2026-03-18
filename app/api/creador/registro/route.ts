@@ -56,14 +56,22 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Crear el influencer con estado PENDING
-    // No enviamos profileUrl para compatibilidad con bases que aún no tienen esa columna (ej. producción)
+    const requiredInt = (v: unknown): number =>
+      v !== null && v !== undefined && v !== '' && !Number.isNaN(Number(v)) ? Number(v) : 0
+
     const platformCreate = platforms.map((p: any) => ({
       platform: p.platform,
       username: p.username,
       profileUrl: p.profileUrl || null,
       followers: p.followers,
       engagementRate: p.engagementRate,
+      impressions: requiredInt(p.impressions),
+      interactions: requiredInt(p.interactions),
+      newFollowers30: requiredInt(p.newFollowers30),
+      avgReelViews: requiredInt(p.avgReelViews),
+      avgStoryViews: requiredInt(p.avgStoryViews),
+      avgPostReach: requiredInt(p.avgPostReach),
+      profileVisits: requiredInt(p.profileVisits),
     }))
 
     const influencer = await prisma.influencer.create({

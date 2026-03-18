@@ -18,7 +18,9 @@ export default function ComoFuncionaPage() {
             <div className="w-full px-3 sm:px-4 lg:px-6 py-2 md:py-2.5">
               <div className="flex justify-between items-center">
                 <Link href="/" className="flex items-center gap-2">
-                  <Image src="/logo3.0.jpg" alt="influ-finder" width={44} height={44} className="rounded-lg object-contain h-9 w-9 sm:h-10 sm:w-10" />
+                  <span className="inline-flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center [&_img]:scale-110">
+                  <Image src="/logo.influ.jpg" alt="InfluFinder" width={44} height={44} className="rounded-lg object-contain" />
+                </span>
                   <span className="text-xl font-bold text-white tracking-tight">influ-finder</span>
                 </Link>
                 <Link
@@ -64,10 +66,10 @@ export default function ComoFuncionaPage() {
             influ-finder reúne creadores e influencers de Uruguay en un solo lugar para que puedas buscar, filtrar y analizar perfiles según audiencia, métricas y tipo de colaboración.
           </p>
           <Link
-            href="/"
+            href="/explorar"
             className="inline-flex items-center gap-2 bg-[#000020] text-white px-6 py-3 rounded-full font-bold text-sm md:text-base tracking-tight hover:bg-slate-900 transition-colors uppercase"
           >
-            ← Descubrir perfiles
+            Descubrir perfiles →
           </Link>
         </div>
       </section>

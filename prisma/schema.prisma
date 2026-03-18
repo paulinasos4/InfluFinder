@@ -82,6 +82,14 @@ model PlatformData {
   profileUrl        String?           // URL del perfil para que la marca pueda entrar directo
   followers         Int
   engagementRate    Float
+  // Métricas del panel profesional (requeridas; 0 si no aplica)
+  impressions       Int               @default(0)  // Visualizaciones totales
+  interactions      Int               @default(0)  // Interacciones (likes, comentarios, etc.)
+  newFollowers30    Int               @default(0)  // Nuevos seguidores últimos 30 días
+  avgReelViews      Int               @default(0)  // Vistas promedio reels
+  avgStoryViews     Int               @default(0)  // Vistas promedio historias
+  avgPostReach      Int               @default(0)  // Alcance/vistas promedio post
+  profileVisits     Int               @default(0)  // Vistas al perfil
   influencer        Influencer        @relation(fields: [influencerId], references: [id], onDelete: Cascade)
 
   @@index([influencerId])

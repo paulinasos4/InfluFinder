@@ -12,9 +12,9 @@ const DEPARTMENTS = [
 ]
 
 const NICHE_OPTIONS = [
-  'Lifestyle', 'Fitness', 'Beauty', 'Fashion', 'Food',
-  'Travel', 'Tech', 'Gaming', 'Music', 'Comedy',
-  'Education', 'Business', 'Sports', 'Art', 'Otro'
+  'Estilo de vida', 'Fitness', 'Belleza', 'Moda', 'Gastronomía',
+  'Viajes', 'Tecnología', 'Gaming', 'Música', 'Comedia',
+  'Educación', 'Negocios', 'Deportes', 'Arte', 'Otro'
 ]
 
 const PLATFORMS = [

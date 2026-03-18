@@ -132,44 +132,75 @@ export default async function InfluencerProfile({ params }: PageProps) {
             <section className="mb-8">
               <h2 className="text-xl font-semibold mb-4 text-slate-900">Métricas por plataforma</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {influencer.platforms.map((platform) => (
-                  <div
-                    key={platform.id}
-                    className="border border-slate-200 rounded-xl p-4 hover:shadow-md transition-shadow bg-slate-50/50"
-                  >
-                    <h3 className="font-semibold text-lg mb-2 flex items-center gap-2 text-slate-900">
-                      <PlatformIcon platform={platform.platform} size={22} />
-                      {getPlatformLabel(platform.platform)}
-                    </h3>
-                    <p className="text-sm text-slate-800 mb-1">
-                      @{platform.username}
-                    </p>
-                    {(platform as { profileUrl?: string | null }).profileUrl && (
-                      <a
-                        href={(platform as { profileUrl?: string | null }).profileUrl!}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm font-medium text-slate-900 hover:text-slate-700 mb-3"
-                      >
-                        Ir a {getPlatformLabel(platform.platform)} →
-                      </a>
-                    )}
-                    <div className="mt-3 space-y-2">
-                      <div>
-                        <span className="text-sm text-slate-700">Seguidores:</span>
-                        <p className="text-lg font-semibold text-slate-900">
-                          {formatNumber(platform.followers)}
-                        </p>
+                {influencer.platforms.map((platform) => {
+                  const p = platform as typeof platform & {
+                    impressions?: number
+                    interactions?: number
+                    newFollowers30?: number
+                    avgReelViews?: number
+                    avgStoryViews?: number
+                    avgPostReach?: number
+                    profileVisits?: number
+                  }
+                  const proMetrics = [
+                    { label: 'Visualizaciones', value: p.impressions ?? 0, icon: '👁' },
+                    { label: 'Interacciones', value: p.interactions ?? 0, icon: '❤️' },
+                    { label: 'Nuevos seguidores (30d)', value: p.newFollowers30 ?? 0, icon: '➕' },
+                    { label: 'Vistas Reels (prom.)', value: p.avgReelViews ?? 0, icon: '🎬' },
+                    { label: 'Vistas Historias (prom.)', value: p.avgStoryViews ?? 0, icon: '📖' },
+                    { label: 'Alcance Post (prom.)', value: p.avgPostReach ?? 0, icon: '📷' },
+                    { label: 'Vistas al perfil', value: p.profileVisits ?? 0, icon: '👤' },
+                  ]
+                  return (
+                    <div
+                      key={platform.id}
+                      className="border border-slate-200 rounded-xl p-4 hover:shadow-md transition-shadow bg-slate-50/50"
+                    >
+                      <h3 className="font-semibold text-lg mb-2 flex items-center gap-2 text-slate-900">
+                        <PlatformIcon platform={platform.platform} size={22} />
+                        {getPlatformLabel(platform.platform)}
+                      </h3>
+                      <p className="text-sm text-slate-800 mb-1">
+                        @{platform.username}
+                      </p>
+                      {(platform as { profileUrl?: string | null }).profileUrl && (
+                        <a
+                          href={(platform as { profileUrl?: string | null }).profileUrl!}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-sm font-medium text-slate-900 hover:text-slate-700 mb-3"
+                        >
+                          Ir a {getPlatformLabel(platform.platform)} →
+                        </a>
+                      )}
+                      <div className="mt-3 space-y-2">
+                        <div>
+                          <span className="text-sm text-slate-700">Seguidores:</span>
+                          <p className="text-lg font-semibold text-slate-900">
+                            {formatNumber(platform.followers)}
+                          </p>
+                        </div>
+                        <div>
+                          <span className="text-sm text-slate-700">Engagement Rate:</span>
+                          <p className="text-lg font-semibold text-indigo-600">
+                            {platform.engagementRate.toFixed(2)}%
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <span className="text-sm text-slate-700">Engagement Rate:</span>
-                        <p className="text-lg font-semibold text-indigo-600">
-                          {platform.engagementRate.toFixed(2)}%
-                        </p>
+                      <div className="mt-4 pt-4 border-t border-slate-200">
+                        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Panel profesional</p>
+                        <div className="grid grid-cols-2 gap-2">
+                          {proMetrics.map((m) => (
+                            <div key={m.label} className="bg-white/80 rounded-lg px-2.5 py-2 border border-slate-100">
+                              <span className="text-slate-500 text-xs block">{m.icon} {m.label}</span>
+                              <span className="text-slate-900 font-semibold text-sm">{formatNumber(m.value)}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             </section>
 

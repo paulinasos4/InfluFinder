@@ -27,7 +27,6 @@ body {
   font-family: 'Bebas Neue', Arial, sans-serif;
 }
 
-/* Fondo con foto del mood board */
 .bg-hero-moodboard {
   background-image: url('/fondo_collage.png');
   background-size: cover;

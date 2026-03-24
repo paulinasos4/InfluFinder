@@ -24,9 +24,9 @@ export default async function ExplorarPage() {
           <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl bg-[#000020]">
             <div className="w-full px-3 sm:px-4 lg:px-6 py-2 md:py-2.5">
               <div className="flex justify-between items-center">
-                <Link href="/" className="flex items-center gap-2">
-                  <span className="inline-flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center [&_img]:scale-110">
-                    <Image src="/logo.influ.jpg" alt="InfluFinder" width={44} height={44} className="rounded-lg object-contain" />
+                <Link href="/" className="flex items-center gap-4">
+                  <span className="inline-flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center overflow-visible -ml-1">
+                    <Image src="/logo.png" alt="InfluFinder" width={88} height={88} unoptimized className="rounded-lg object-contain !w-11 !h-11" style={{ transform: 'scale(1.45)' }} />
                   </span>
                   <span className="text-xl font-bold text-white tracking-tight">influ-finder</span>
                 </Link>
@@ -45,7 +45,7 @@ export default async function ExplorarPage() {
       <div className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] pt-[7.5rem] md:pt-[8.25rem] pb-6 md:pb-8 space-y-3 md:space-y-4">
         <section className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl py-8 sm:py-10 md:py-14 lg:py-16 min-h-0 md:min-h-[70vh] bg-hero-moodboard">
           <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 text-center pb-6 bg-transparent mt-4 md:mt-6">
-            <h1 className="font-hero font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] 2xl:text-[6rem] mb-3 md:mb-6 tracking-tight leading-tight text-[#f99aaa] uppercase">
+            <h1 className="font-hero font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] 2xl:text-[6rem] mb-3 md:mb-6 tracking-tight leading-tight text-[#F5B5BE] uppercase">
               Encontrá el influencer ideal para tu marca
             </h1>
             <p className="text-xs sm:text-sm md:text-base text-white max-w-2xl mx-auto font-light uppercase">

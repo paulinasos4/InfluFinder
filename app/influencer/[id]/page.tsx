@@ -92,6 +92,7 @@ export default async function InfluencerProfile({ params }: PageProps) {
                     fill
                     className="rounded-full object-cover border-4 border-white"
                     sizes="120px"
+                    unoptimized={influencer.photo.startsWith('data:')}
                   />
                 </div>
               ) : (

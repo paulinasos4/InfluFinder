@@ -138,27 +138,77 @@ export default function RegistroCreador() {
     return Number.isNaN(n) ? null : n
   }
 
+  /** JSON.stringify(NaN) → null y Prisma falla en followers Int */
+  const parseFollowersInt = (s: string): number => {
+    const digits = String(s).replace(/\D/g, '')
+    const n = parseInt(digits, 10)
+    return Number.isFinite(n) ? n : 0
+  }
+
+  const parseEngagementRate = (s: string): number => {
+    const t = String(s).trim().replace(/\s/g, '').replace(',', '.')
+    const n = parseFloat(t)
+    return Number.isFinite(n) ? n : 0
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setMessage(null)
 
     try {
-      // Validar que haya al menos una plataforma
+      if (!formData.niche?.trim()) {
+        setMessage({ type: 'error', text: 'Seleccioná un nicho' })
+        setLoading(false)
+        return
+      }
+      if (!formData.department?.trim()) {
+        setMessage({ type: 'error', text: 'Seleccioná un departamento' })
+        setLoading(false)
+        return
+      }
+      if (formData.collaborationTypes.length === 0) {
+        setMessage({ type: 'error', text: 'Seleccioná al menos un tipo de colaboración (Canje, Pago o Ambos)' })
+        setLoading(false)
+        return
+      }
+
       if (platforms.length === 0) {
         setMessage({ type: 'error', text: 'Debes agregar al menos una plataforma' })
         setLoading(false)
         return
       }
 
-      // Validar que todas las plataformas estén completas (profileUrl es opcional pero recomendado)
       for (const platform of platforms) {
-        if (!platform.platform || !platform.username || !platform.followers || !platform.engagementRate) {
+        if (!platform.platform || !platform.username || !platform.followers || platform.engagementRate === '') {
           setMessage({ type: 'error', text: 'Completa todos los campos de las plataformas' })
           setLoading(false)
           return
         }
+        const f = parseFollowersInt(platform.followers)
+        const er = parseEngagementRate(platform.engagementRate)
+        if (f < 1) {
+          setMessage({ type: 'error', text: 'En cada plataforma, ingresá los seguidores como número (ej. 1500).' })
+          setLoading(false)
+          return
+        }
+        if (er < 0) {
+          setMessage({ type: 'error', text: 'En cada plataforma, ingresá el engagement (ej. 3 o 3,5).' })
+          setLoading(false)
+          return
+        }
       }
+
+      const fileToDataUrl = (file: File): Promise<string> =>
+        new Promise((resolve, reject) => {
+          const r = new FileReader()
+          r.onload = () => resolve(r.result as string)
+          r.onerror = () => reject(new Error('lectura'))
+          r.readAsDataURL(file)
+        })
+
+      /** Vercel no permite escribir en public/; si falla /api/upload usamos data URL (límite ~1,5 MB) */
+      const MAX_DATA_URL_FILE = Math.floor(2.2 * 1024 * 1024)
 
       let photoUrl = formData.photo?.trim() || null
       if (profileImageFile) {
@@ -168,14 +218,32 @@ export default function RegistroCreador() {
           method: 'POST',
           body: uploadForm,
         })
-        if (!uploadRes.ok) {
-          const uploadData = await uploadRes.json()
-          setMessage({ type: 'error', text: uploadData.error || 'Error al subir la imagen' })
+        if (uploadRes.ok) {
+          const { url } = await uploadRes.json()
+          photoUrl = url
+        } else if (profileImageFile.size <= MAX_DATA_URL_FILE) {
+          try {
+            photoUrl = await fileToDataUrl(profileImageFile)
+          } catch {
+            setMessage({ type: 'error', text: 'No se pudo procesar la imagen. Probá con otra.' })
+            setLoading(false)
+            return
+          }
+        } else {
+          let uploadErr = 'Error al subir la imagen'
+          try {
+            const uploadData = await uploadRes.json()
+            if (uploadData?.error) uploadErr = uploadData.error
+          } catch {
+            /* cuerpo no JSON */
+          }
+          setMessage({
+            type: 'error',
+            text: `${uploadErr} Probá con una imagen de hasta ~2 MB o configurá Vercel Blob en el proyecto.`,
+          })
           setLoading(false)
           return
         }
-        const { url } = await uploadRes.json()
-        photoUrl = url
       }
 
       const response = await fetch('/api/creador/registro', {
@@ -190,8 +258,8 @@ export default function RegistroCreador() {
             platform: p.platform,
             username: p.username,
             profileUrl: p.profileUrl?.trim() || null,
-            followers: parseInt(p.followers),
-            engagementRate: parseFloat(p.engagementRate),
+            followers: parseFollowersInt(p.followers),
+            engagementRate: parseEngagementRate(p.engagementRate),
             impressions: parseOptionalInt(p.impressions),
             interactions: parseOptionalInt(p.interactions),
             newFollowers30: parseOptionalInt(p.newFollowers30),
@@ -203,7 +271,18 @@ export default function RegistroCreador() {
         }),
       })
 
-      const data = await response.json()
+      let data: { error?: string } = {}
+      try {
+        data = await response.json()
+      } catch {
+        setMessage({
+          type: 'error',
+          text: response.status >= 500
+            ? 'El servidor no respondió bien. Si estás en producción, revisá la base de datos.'
+            : 'Respuesta inválida del servidor. Intenta nuevamente.',
+        })
+        return
+      }
 
       if (response.ok) {
         setMessage({
@@ -216,8 +295,8 @@ export default function RegistroCreador() {
       } else {
         setMessage({ type: 'error', text: data.error || 'Error al registrar. Intenta nuevamente.' })
       }
-    } catch (error) {
-      setMessage({ type: 'error', text: 'Error al registrar. Intenta nuevamente.' })
+    } catch {
+      setMessage({ type: 'error', text: 'No pudimos conectar. Revisá tu red e intenta nuevamente.' })
     } finally {
       setLoading(false)
     }

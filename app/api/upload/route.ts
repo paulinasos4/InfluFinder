@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { put } from '@vercel/blob'
 import { writeFile, mkdir } from 'fs/promises'
 import path from 'path'
 
@@ -36,8 +37,17 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(bytes)
     const ext = path.extname(file.name) || '.jpg'
     const filename = `profile-${Date.now()}-${Math.random().toString(36).slice(2, 9)}${ext}`
-    const dir = path.join(process.cwd(), UPLOAD_DIR)
 
+    const blobToken = process.env.BLOB_READ_WRITE_TOKEN
+    if (blobToken) {
+      const blob = await put(filename, buffer, {
+        access: 'public',
+        token: blobToken,
+      })
+      return NextResponse.json({ url: blob.url })
+    }
+
+    const dir = path.join(process.cwd(), UPLOAD_DIR)
     await mkdir(dir, { recursive: true })
     await writeFile(path.join(dir, filename), buffer)
 
@@ -45,8 +55,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ url })
   } catch (err) {
     console.error('Upload error:', err)
+    const hint =
+      process.env.VERCEL && !process.env.BLOB_READ_WRITE_TOKEN
+        ? ' En Vercel hace falta Vercel Blob: en el proyecto Storage → Blob, creá un store y enlazá BLOB_READ_WRITE_TOKEN.'
+        : ''
     return NextResponse.json(
-      { error: 'Error al subir la imagen' },
+      {
+        error:
+          'No se pudo guardar la imagen en el servidor (el disco de producción suele ser de solo lectura).' +
+          hint,
+      },
       { status: 500 }
     )
   }

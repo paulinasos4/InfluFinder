@@ -107,7 +107,7 @@ export default function InfluencerList() {
               <div className="flex items-center gap-4">
                 <div className="flex-shrink-0 h-14 w-14 relative rounded-full overflow-hidden bg-slate-100">
                   {influencer.photo ? (
-                    <Image src={influencer.photo} alt={influencer.name} fill className="object-cover" sizes="56px" />
+                    <Image src={influencer.photo} alt={influencer.name} fill className="object-cover" sizes="56px" unoptimized={influencer.photo.startsWith('data:')} />
                   ) : (
                     <div className="h-full w-full flex items-center justify-center">
                       <span className="text-slate-500 text-lg font-medium">{influencer.name.charAt(0).toUpperCase()}</span>
@@ -171,7 +171,7 @@ export default function InfluencerList() {
                     <div className="flex items-center gap-3">
                       <div className="flex-shrink-0 h-10 w-10 relative rounded-full overflow-hidden bg-slate-100">
                         {influencer.photo ? (
-                          <Image src={influencer.photo} alt={influencer.name} fill className="object-cover" sizes="40px" />
+                          <Image src={influencer.photo} alt={influencer.name} fill className="object-cover" sizes="40px" unoptimized={influencer.photo.startsWith('data:')} />
                         ) : (
                           <div className="h-full w-full flex items-center justify-center">
                             <span className="text-slate-500 text-sm font-medium">{influencer.name.charAt(0).toUpperCase()}</span>

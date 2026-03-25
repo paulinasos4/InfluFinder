@@ -207,8 +207,8 @@ export default function RegistroCreador() {
           r.readAsDataURL(file)
         })
 
-      /** Vercel no permite escribir en public/; si falla /api/upload usamos data URL (límite ~1,5 MB) */
-      const MAX_DATA_URL_FILE = Math.floor(2.2 * 1024 * 1024)
+      /** Si /api/upload falla (p. ej. Vercel sin Blob), mandamos base64 — mismo tope que subida: 5 MB */
+      const MAX_DATA_URL_FILE = 5 * 1024 * 1024
 
       let photoUrl = formData.photo?.trim() || null
       if (profileImageFile) {
@@ -239,7 +239,7 @@ export default function RegistroCreador() {
           }
           setMessage({
             type: 'error',
-            text: `${uploadErr} Probá con una imagen de hasta ~2 MB o configurá Vercel Blob en el proyecto.`,
+            text: `${uploadErr} Si la imagen pesa más de 5 MB, comprimila; en Vercel conviene configurar Blob (BLOB_READ_WRITE_TOKEN).`,
           })
           setLoading(false)
           return

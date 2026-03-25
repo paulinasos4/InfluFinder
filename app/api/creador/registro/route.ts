@@ -46,10 +46,11 @@ export async function POST(request: NextRequest) {
 
     const photoStr = typeof photo === 'string' ? photo.trim() : ''
     if (photoStr.startsWith('data:image/')) {
-      const maxLen = 3_200_000
+      // ~5 MB binario en base64 ≈ 6,9 M caracteres
+      const maxLen = 7_200_000
       if (photoStr.length > maxLen) {
         return NextResponse.json(
-          { error: 'La imagen es demasiado grande. Usá una más chica o comprimila.' },
+          { error: 'La imagen es demasiado grande (máx. 5 MB). Comprimila o configurá almacenamiento Blob.' },
           { status: 400 }
         )
       }

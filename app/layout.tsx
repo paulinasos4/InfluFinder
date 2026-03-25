@@ -5,10 +5,6 @@ export const metadata: Metadata = {
   title: 'Influ Finder | Influencers en Uruguay - Directorio con métricas de influencers',
   description: 'Influ Finder: influencers en Uruguay con métricas de influencers (seguidores, engagement). Directorio de creadores para marcas. Busca por nicho, plataforma y colabora con el influencer ideal.',
   keywords: ['influ finder', 'influ finder uruguay', 'influencers en uruguay', 'influencers', 'métricas de influencer', 'metricas de influencer', 'directorio influencers', 'influencers uruguay', 'creadores uruguay', 'buscar influencer', 'marcas uruguay', 'engagement influencers'],
-  icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
-  },
   openGraph: {
     title: 'Influ Finder - Influencers en Uruguay | Métricas de influencers',
     description: 'Directorio de influencers en Uruguay con métricas (seguidores, engagement). Encuentra al influencer ideal para tu marca.',

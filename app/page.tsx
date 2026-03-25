@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#faf8f5]">
       <div className="fixed top-0 left-0 right-0 z-[60] bg-[#EEE0F3] py-2.5 text-center">
-        <Link href="/explorar" className="font-bold text-sm md:text-base tracking-tight uppercase text-slate-700 hover:text-slate-900 transition-colors inline-flex items-center gap-1">
+        <Link href="/explorar" className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors inline-flex items-center gap-1">
           Ir al directorio de influencers →
         </Link>
       </div>

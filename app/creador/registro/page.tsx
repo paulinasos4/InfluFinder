@@ -25,31 +25,12 @@ const PLATFORMS = [
   { value: 'YOUTUBE', label: 'YouTube' }
 ]
 
-const METRIC_LABELS = {
-  impressions: 'Visualizaciones',
-  interactions: 'Interacciones',
-  newFollowers30: 'Nuevos seguidores (30 días)',
-  avgReelViews: 'Vistas promedio Reels',
-  avgStoryViews: 'Vistas promedio Historias',
-  avgPostReach: 'Alcance promedio Post',
-  profileVisits: 'Vistas al perfil',
-} as const
-
-type MetricKey = keyof typeof METRIC_LABELS
-
 interface PlatformFormData {
   platform: string
   username: string
   profileUrl: string
   followers: string
   engagementRate: string
-  impressions: string
-  interactions: string
-  newFollowers30: string
-  avgReelViews: string
-  avgStoryViews: string
-  avgPostReach: string
-  profileVisits: string
 }
 
 export default function RegistroCreador() {
@@ -100,16 +81,6 @@ export default function RegistroCreador() {
     }))
   }
 
-  const defaultPlatformMetrics = (): Pick<PlatformFormData, MetricKey> => ({
-    impressions: '',
-    interactions: '',
-    newFollowers30: '',
-    avgReelViews: '',
-    avgStoryViews: '',
-    avgPostReach: '',
-    profileVisits: '',
-  })
-
   const addPlatform = () => {
     setPlatforms([...platforms, {
       platform: '',
@@ -117,7 +88,6 @@ export default function RegistroCreador() {
       profileUrl: '',
       followers: '',
       engagementRate: '',
-      ...defaultPlatformMetrics(),
     }])
   }
 
@@ -129,13 +99,6 @@ export default function RegistroCreador() {
     const updated = [...platforms]
     updated[index] = { ...updated[index], [field]: value }
     setPlatforms(updated)
-  }
-
-  const parseOptionalInt = (s: string): number | null => {
-    const v = s.trim()
-    if (!v) return null
-    const n = parseInt(v, 10)
-    return Number.isNaN(n) ? null : n
   }
 
   /** JSON.stringify(NaN) → null y Prisma falla en followers Int */
@@ -260,13 +223,6 @@ export default function RegistroCreador() {
             profileUrl: p.profileUrl?.trim() || null,
             followers: parseFollowersInt(p.followers),
             engagementRate: parseEngagementRate(p.engagementRate),
-            impressions: parseOptionalInt(p.impressions),
-            interactions: parseOptionalInt(p.interactions),
-            newFollowers30: parseOptionalInt(p.newFollowers30),
-            avgReelViews: parseOptionalInt(p.avgReelViews),
-            avgStoryViews: parseOptionalInt(p.avgStoryViews),
-            avgPostReach: parseOptionalInt(p.avgPostReach),
-            profileVisits: parseOptionalInt(p.profileVisits),
           }))
         }),
       })
@@ -674,34 +630,6 @@ export default function RegistroCreador() {
                     </div>
                   </div>
 
-                  {/* Métricas del panel profesional */}
-                  <div className="mt-6 pt-6 border-t border-slate-200">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="text-lg" aria-hidden>📊</span>
-                      <h4 className="text-sm font-semibold text-slate-800">Métricas del panel profesional *</h4>
-                    </div>
-                    <p className="text-xs text-slate-500 mb-4">
-                      En Instagram: Configuración → Cuenta profesional → Estadísticas. Usá 0 si no tenés el dato.
-                    </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                      {(Object.keys(METRIC_LABELS) as MetricKey[]).map((key) => (
-                        <div key={key}>
-                          <label className="block text-xs font-medium text-slate-600 mb-1">
-                            {METRIC_LABELS[key]} *
-                          </label>
-                          <input
-                            type="number"
-                            min="0"
-                            value={platform[key]}
-                            onChange={(e) => updatePlatform(index, key, e.target.value)}
-                            placeholder="0"
-                            required
-                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent text-sm"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               ))}
 

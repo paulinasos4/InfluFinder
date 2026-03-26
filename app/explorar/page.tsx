@@ -45,7 +45,7 @@ export default async function ExplorarPage() {
       <div className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] pt-[7.5rem] md:pt-[8.25rem] pb-6 md:pb-8 space-y-3 md:space-y-4">
         <section className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl py-8 sm:py-10 md:py-14 lg:py-16 min-h-0 md:min-h-[70vh] bg-hero-moodboard">
           <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 text-center pb-6 bg-transparent mt-4 md:mt-6">
-            <h1 className="font-hero font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] 2xl:text-[6rem] mb-3 md:mb-6 tracking-tight leading-tight text-[#F5B5BE] uppercase">
+            <h1 className="font-hero font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] 2xl:text-[6rem] mb-3 md:mb-6 tracking-tight leading-tight text-[#ff7384] uppercase">
               Encontrá el influencer ideal para tu marca
             </h1>
             <p className="text-xs sm:text-sm md:text-base text-white max-w-2xl mx-auto font-light uppercase">

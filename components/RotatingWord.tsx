@@ -11,7 +11,7 @@ interface RotatingWordProps {
 
 export default function RotatingWord({
   words,
-  intervalMs = 2400,
+  intervalMs = 1900,
   className = '',
   style,
 }: RotatingWordProps) {

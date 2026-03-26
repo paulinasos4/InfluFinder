@@ -42,7 +42,15 @@ export default function AdminPage() {
   const checkAuthAndFetch = async () => {
     setLoading(true)
     try {
-      const response = await fetch('/api/influencers/pending', { credentials: 'include' })
+      const ts = Date.now()
+      const response = await fetch(`/api/influencers/pending?ts=${ts}`, {
+        credentials: 'include',
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache',
+          Pragma: 'no-cache',
+        },
+      })
       if (response.status === 401) {
         setLoggedIn(false)
         setPendingInfluencers([])
@@ -53,7 +61,13 @@ export default function AdminPage() {
       setLoggedIn(true)
       setPendingInfluencers(Array.isArray(data) ? data : [])
 
-      const approvedRes = await fetch('/api/influencers')
+      const approvedRes = await fetch(`/api/influencers?ts=${ts}`, {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache',
+          Pragma: 'no-cache',
+        },
+      })
       const approvedData = await approvedRes.json()
       setApprovedInfluencers(Array.isArray(approvedData) ? approvedData : [])
     } catch (error) {

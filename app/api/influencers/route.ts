@@ -8,13 +8,9 @@ export async function GET(request: NextRequest) {
     
     // Obtener filtros de los query params
     const niche = searchParams.get('niche')
-    const department = searchParams.get('department')
-    const ageMin = searchParams.get('ageMin')
-    const ageMax = searchParams.get('ageMax')
-    const followersMin = searchParams.get('followersMin')
-    const followersMax = searchParams.get('followersMax')
-    const engagementMin = searchParams.get('engagementMin')
-    const engagementMax = searchParams.get('engagementMax')
+    const audienceCity = searchParams.get('audienceCity')
+    const audienceAgeRange = searchParams.get('audienceAgeRange')
+    const audienceGender = searchParams.get('audienceGender')
     const platforms = searchParams.get('platforms')?.split(',') || []
     const collaborationType = searchParams.get('collaborationType')
 
@@ -28,16 +24,17 @@ export async function GET(request: NextRequest) {
       where.niche = niche
     }
 
-    if (department) {
-      where.department = department
+    if (audienceCity) {
+      // Por ahora mapea a departamento del creador hasta tener ciudad de audiencia separada.
+      where.department = audienceCity
     }
 
-    if (ageMin || ageMax) {
-      where.age = {}
-      const aMin = parseInt(ageMin || '', 10)
-      const aMax = parseInt(ageMax || '', 10)
-      if (ageMin && !Number.isNaN(aMin)) where.age.gte = aMin
-      if (ageMax && !Number.isNaN(aMax)) where.age.lte = aMax
+    if (audienceAgeRange) {
+      where.audienceAgeRange = audienceAgeRange
+    }
+
+    if (audienceGender) {
+      where.audienceGender = audienceGender
     }
 
     if (collaborationType) {
@@ -52,22 +49,6 @@ export async function GET(request: NextRequest) {
       platformWhere.platform = {
         in: platforms
       }
-    }
-
-    if (followersMin || followersMax) {
-      platformWhere.followers = {}
-      const fMin = parseInt(followersMin || '', 10)
-      const fMax = parseInt(followersMax || '', 10)
-      if (followersMin && !Number.isNaN(fMin)) platformWhere.followers.gte = fMin
-      if (followersMax && !Number.isNaN(fMax)) platformWhere.followers.lte = fMax
-    }
-
-    if (engagementMin || engagementMax) {
-      platformWhere.engagementRate = {}
-      const eMin = parseFloat(engagementMin || '')
-      const eMax = parseFloat(engagementMax || '')
-      if (engagementMin && !Number.isNaN(eMin)) platformWhere.engagementRate.gte = eMin
-      if (engagementMax && !Number.isNaN(eMax)) platformWhere.engagementRate.lte = eMax
     }
 
     // Buscar influencers con filtros (select explícito de platforms para compatibilidad si falta columna profileUrl en prod)

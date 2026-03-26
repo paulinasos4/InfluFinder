@@ -48,6 +48,7 @@ export default function RegistroCreador() {
     age: '',
     audienceGender: '',
     audienceAgeRange: '',
+    audienceCity: '',
     hasProfessionalTeam: false,
     influencerType: '',
     collaborationTypes: [] as string[],
@@ -216,6 +217,8 @@ export default function RegistroCreador() {
         },
         body: JSON.stringify({
           ...formData,
+          // Por compatibilidad con filtros actuales, guardamos esta ciudad en department.
+          department: formData.audienceCity || formData.department,
           photo: photoUrl,
           platforms: platforms.map(p => ({
             platform: p.platform,
@@ -484,6 +487,23 @@ export default function RegistroCreador() {
                     <option value="RANGE_24_34">24-34 años</option>
                     <option value="RANGE_35_44">35-44 años</option>
                     <option value="RANGE_45_PLUS">45+ años</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-800 mb-1">
+                    Ciudad principal de la audiencia
+                  </label>
+                  <select
+                    name="audienceCity"
+                    value={formData.audienceCity}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  >
+                    <option value="">Selecciona...</option>
+                    {DEPARTMENTS.map(dept => (
+                      <option key={dept} value={dept}>{dept}</option>
+                    ))}
                   </select>
                 </div>
               </div>

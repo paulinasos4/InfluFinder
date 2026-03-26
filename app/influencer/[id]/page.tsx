@@ -241,7 +241,7 @@ export default async function InfluencerProfile({ params }: PageProps) {
 
                 {influencer.audienceAgeRange && (
                   <div>
-                    <h3 className="font-medium text-slate-800 mb-2">Rango etario de audiencia</h3>
+                    <h3 className="font-medium text-slate-800 mb-2">Edad de la audiencia</h3>
                     <p className="text-slate-900">
                       {getAgeRangeLabel(influencer.audienceAgeRange)}
                     </p>

@@ -474,7 +474,7 @@ export default function RegistroCreador() {
 
                 <div>
                   <label className="block text-sm font-medium text-slate-800 mb-1">
-                    Rango etario de audiencia
+                    Edad de la audiencia
                   </label>
                   <select
                     name="audienceAgeRange"

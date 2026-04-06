@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RotatingWord from '@/components/RotatingWord'
 import SearchFilters from '@/components/SearchFilters'
 import InfluencerList from '@/components/InfluencerList'
 import Link from 'next/link'
@@ -43,10 +44,19 @@ export default async function ExplorarPage() {
       </header>
 
       <div className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] pt-[7.5rem] md:pt-[8.25rem] pb-6 md:pb-8 space-y-3 md:space-y-4">
-        <section className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl py-8 sm:py-10 md:py-14 lg:py-16 min-h-0 md:min-h-[70vh] bg-hero-moodboard">
-          <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 text-center pb-6 bg-transparent mt-4 md:mt-6">
-            <h1 className="font-hero font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] 2xl:text-[6rem] mb-3 md:mb-6 tracking-tight leading-tight text-[#ff7384] uppercase">
-              Encontrá el influencer ideal para tu marca
+        <section className="rounded-xl md:rounded-2xl shadow-lg md:shadow-xl py-8 sm:py-10 md:py-14 lg:py-16 min-h-0 md:min-h-[70vh] bg-hero-moodboard">
+          <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 text-center pb-16 sm:pb-20 md:pb-32 lg:pb-40 bg-transparent mt-4 md:mt-6">
+            <h1 className="font-hero font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] 2xl:text-[6rem] mb-3 md:mb-6 tracking-tight leading-[1.1] sm:leading-tight text-white uppercase px-1 drop-shadow-md">
+              Encontrá{' '}
+              <span className="whitespace-nowrap">
+                el{' '}
+                <RotatingWord
+                  words={['creador de contenido', 'influencer']}
+                  className="text-[#ff7384] relative -top-[0.08em]"
+                  style={{ WebkitTextStroke: '1px #000020' }}
+                />
+              </span>{' '}
+              ideal para tu marca
             </h1>
             <p className="text-xs sm:text-sm md:text-base text-white max-w-2xl mx-auto font-light uppercase">
               Buscá, filtrá y analizá según su audiencia y métricas
@@ -55,7 +65,7 @@ export default async function ExplorarPage() {
         </section>
       </div>
 
-      <section className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] -mt-10 sm:-mt-14 md:-mt-[26rem] relative z-10 flex justify-center pb-8 md:pb-20">
+      <section className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] -mt-10 sm:-mt-14 md:-mt-[20rem] lg:-mt-[22rem] relative z-10 flex justify-center pb-8 md:pb-20">
         <div className="w-full max-w-7xl bg-white rounded-xl md:rounded-2xl border border-slate-200 shadow-lg md:shadow-xl overflow-hidden">
           <Suspense fallback={<div className="p-8 animate-pulse h-72" />}>
             <SearchFilters />

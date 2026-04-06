@@ -47,16 +47,18 @@ export default async function ExplorarPage() {
         <section className="rounded-xl md:rounded-2xl shadow-lg md:shadow-xl py-8 sm:py-10 md:py-14 lg:py-16 min-h-0 md:min-h-[70vh] bg-hero-moodboard">
           <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 text-center pb-16 sm:pb-20 md:pb-32 lg:pb-40 bg-transparent mt-4 md:mt-6">
             <h1 className="font-hero font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] 2xl:text-[6rem] mb-3 md:mb-6 tracking-tight leading-[1.1] sm:leading-tight text-white uppercase px-1 drop-shadow-md">
-              Encontrá{' '}
-              <span className="whitespace-nowrap">
-                el{' '}
-                <RotatingWord
-                  words={['creador de contenido', 'influencer']}
-                  className="text-[#ff7384] relative -top-[0.08em]"
-                  style={{ WebkitTextStroke: '1px #000020' }}
-                />
-              </span>{' '}
-              ideal para tu marca
+              <span className="inline-flex max-w-full flex-wrap justify-center items-baseline gap-x-1.5 gap-y-1 text-center">
+                <span className="whitespace-nowrap">
+                  Encontrá el{' '}
+                  <RotatingWord
+                    words={['creador de contenido', 'influencer']}
+                    alignShortWord="start"
+                    className="text-[#ff7384]"
+                    style={{ WebkitTextStroke: '1px #000020' }}
+                  />
+                </span>
+                <span className="whitespace-normal">ideal para tu marca</span>
+              </span>
             </h1>
             <p className="text-xs sm:text-sm md:text-base text-white max-w-2xl mx-auto font-light uppercase">
               Buscá, filtrá y analizá según su audiencia y métricas

@@ -82,12 +82,12 @@ export default function RotatingWord({
     if (typeof document !== 'undefined' && 'fonts' in document) {
       void document.fonts.ready.then(remeasure)
     }
-  }, [longest, className])
+  }, [longest, className, style])
 
   useEffect(() => {
     window.addEventListener('resize', remeasure)
     return () => window.removeEventListener('resize', remeasure)
-  }, [longest, className])
+  }, [longest, className, style])
 
   const current = safeWords[index]
   const shortWord = current.length < longest.length
@@ -124,8 +124,7 @@ export default function RotatingWord({
       <span
         ref={measureRef}
         aria-hidden
-        className={`pointer-events-none absolute left-0 top-0 z-[-1] select-none whitespace-nowrap opacity-0 text-left ${className}`}
-        style={style}
+        className="pointer-events-none absolute left-0 top-0 z-[-1] select-none whitespace-nowrap opacity-0 text-left"
       >
         {longest}
       </span>
@@ -133,8 +132,7 @@ export default function RotatingWord({
         <span
           ref={shortestRef}
           aria-hidden
-          className={`pointer-events-none fixed left-[-10000px] top-0 whitespace-nowrap ${className}`}
-          style={style}
+          className="pointer-events-none fixed left-[-10000px] top-0 whitespace-nowrap opacity-0"
         >
           {shortest}
         </span>

@@ -54,7 +54,7 @@ export default async function ExplorarPage() {
                     words={['creador de contenido', 'influencer']}
                     alignShortWord="start"
                     className="text-[#ff7384]"
-                    style={{ WebkitTextStroke: '1px #000020' }}
+                    style={{ WebkitTextStroke: '1px #ffffff' }}
                   />
                 </span>
                 <span className="whitespace-normal">ideal para tu marca</span>

@@ -119,6 +119,12 @@ export default function RotatingWord({
       ? 'text-left'
       : 'text-right'
 
+  const translateXpx =
+    followingText && !shortWord && followingPullPx != null
+      ? -followingPullPx
+      : 0
+  const translateYrem = visible ? 0 : -0.25
+
   return (
     <span className="relative inline-block align-baseline">
       <span
@@ -138,17 +144,29 @@ export default function RotatingWord({
         </span>
       ) : null}
       <span
-        className={`inline-block whitespace-nowrap transition-all duration-200 ${textAlignClass} ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1'} ${className}`}
+        className={`inline-block whitespace-nowrap ${textAlignClass}`}
         style={{
           minWidth: minPx != null && minPx > 0 ? `${minPx}px` : undefined,
-          transform:
-            followingText && !shortWord && followingPullPx != null
-              ? `translateX(-${followingPullPx}px)`
-              : undefined,
-          ...style,
         }}
       >
-        {safeWords[index]}
+        <span
+          className={`inline-block whitespace-nowrap transition-[opacity,transform] duration-200 ${visible ? 'opacity-100' : 'opacity-0'}`}
+          style={{
+            transform: `translateY(${translateYrem}rem)`,
+          }}
+        >
+          <span
+            className={`inline-block whitespace-nowrap ${className}`}
+            style={{
+              ...style,
+              ...(translateXpx !== 0
+                ? { transform: `translateX(${translateXpx}px)` }
+                : undefined),
+            }}
+          >
+            {safeWords[index]}
+          </span>
+        </span>
       </span>
       {followingText ? (
         <span

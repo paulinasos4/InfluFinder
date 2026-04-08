@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import RotatingCtaLink from '@/components/RotatingCtaLink'
 import RotatingWord from '@/components/RotatingWord'
 
 export default function ComoFuncionaPage() {
@@ -24,12 +25,7 @@ export default function ComoFuncionaPage() {
                 </span>
                   <span className="text-xl font-bold text-white tracking-tight">influ-finder</span>
                 </Link>
-                <Link
-                  href="/creador/registro"
-                  className="bg-white text-slate-900 hover:bg-slate-100 px-4 py-2 md:px-5 md:py-2.5 rounded-full font-medium transition-colors text-xs md:text-sm"
-                >
-                  Soy creador
-                </Link>
+                <RotatingCtaLink className="bg-white text-slate-900 hover:bg-slate-100 px-4 py-2 md:px-5 md:py-2.5 rounded-full font-medium transition-colors text-xs md:text-sm" />
               </div>
             </div>
           </div>

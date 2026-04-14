@@ -14,8 +14,8 @@ interface RotatingWordProps {
   intervalMs?: number
   className?: string
   style?: CSSProperties
-  /** 'end' (default): palabra corta alineada a la derecha del ancho fijo (cerca de lo que sigue, ej. “tiene”). 'start': al inicio (cerca de lo anterior, ej. después de “qué”). */
-  alignShortWord?: 'start' | 'end'
+  /** 'end' (default): palabra corta alineada a la derecha del ancho fijo. 'start': al inicio. 'center': centrada. */
+  alignShortWord?: 'start' | 'end' | 'center'
   /** Texto inmediatamente después de la palabra (ej. “ puede ayudarte?”). Con ancho fijo, acerca el trazo si la palabra actual es más corta. */
   followingText?: string
 }
@@ -115,7 +115,9 @@ export default function RotatingWord({
 
   const textAlignClass = followingText
     ? 'text-left'
-    : !shortWord || alignShortWord === 'start'
+    : alignShortWord === 'center'
+      ? 'text-center'
+      : !shortWord || alignShortWord === 'start'
       ? 'text-left'
       : 'text-right'
 

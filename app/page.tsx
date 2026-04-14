@@ -59,7 +59,7 @@ export default function Home() {
                 words={['creador de contenido', 'influencer']}
                 className="text-[#ff7384]"
                 style={{ WebkitTextStroke: '1px #ffffff' }}
-                alignShortWord="start"
+                alignShortWord="center"
               />
             </span>
             <span className="block sm:hidden">puede ayudarte?</span>

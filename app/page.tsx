@@ -54,7 +54,16 @@ export default function Home() {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-tight tracking-tight px-2">
             ¿Querés llegar a más personas, pero no sabés qué{' '}
-            <span className="whitespace-nowrap">
+            <span className="block sm:hidden">
+              <RotatingWord
+                words={['creador de contenido', 'influencer']}
+                className="text-[#ff7384]"
+                style={{ WebkitTextStroke: '1px #ffffff' }}
+                alignShortWord="start"
+              />
+            </span>
+            <span className="block sm:hidden">puede ayudarte?</span>
+            <span className="hidden whitespace-nowrap sm:inline">
               <RotatingWord
                 words={['creador de contenido', 'influencer']}
                 className="text-[#ff7384]"

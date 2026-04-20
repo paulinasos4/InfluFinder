@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { sendRegistrationConfirmationEmail } from '@/lib/email'
 
 export async function POST(request: NextRequest) {
   try {
@@ -146,10 +147,19 @@ export async function POST(request: NextRequest) {
       include: { platforms: true }
     })
 
+    const emailResult = await sendRegistrationConfirmationEmail(
+      influencer.email,
+      influencer.name
+    )
+    if (!emailResult.ok && 'error' in emailResult) {
+      console.error('[email] Confirmación de registro:', emailResult.error)
+    }
+
     return NextResponse.json(
-      { 
+      {
         message: 'Registro exitoso. Tu perfil está pendiente de aprobación.',
-        influencer 
+        influencer,
+        ...(process.env.NODE_ENV === 'development' ? { emailDebug: emailResult } : {}),
       },
       { status: 201 }
     )

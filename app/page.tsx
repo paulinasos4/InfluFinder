@@ -48,9 +48,20 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="min-h-screen" aria-hidden />
+      {/* Espaciador levemente más corto para que la tarjeta azul asome y sugiera scroll */}
+      <div
+        className="min-h-[calc(100vh-3.5rem)] md:min-h-[calc(100vh-4rem)]"
+        aria-hidden
+      />
 
-      <section className="flex flex-col justify-center px-4 sm:px-6 md:px-[1cm] py-16 mt-6 md:mt-8 mx-4 sm:mx-6 md:mx-8 bg-[#000020] rounded-3xl sticky top-[9rem] md:top-[10.5rem] z-20 shadow-2xl h-[calc(100vh-9rem)] md:h-[calc(100vh-10.5rem)]">
+      <div
+        aria-hidden
+        className="fixed left-1/2 bottom-6 -translate-x-1/2 text-white/90 text-xl leading-none animate-bounce z-30 pointer-events-none"
+      >
+        ^
+      </div>
+
+      <section className="relative flex flex-col justify-center px-4 sm:px-6 md:px-[1cm] py-16 mt-6 md:mt-8 mx-4 sm:mx-6 md:mx-8 bg-[#000020] rounded-3xl sticky top-[9rem] md:top-[10.5rem] z-20 shadow-2xl h-[calc(100vh-9rem)] md:h-[calc(100vh-10.5rem)]">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-tight tracking-tight px-2">
             ¿Querés llegar a más personas, pero no sabés qué{' '}

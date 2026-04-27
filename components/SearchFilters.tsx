@@ -83,7 +83,8 @@ export default function SearchFilters() {
       }
     })
 
-    router.push(`/?${params.toString()}`)
+    const query = params.toString()
+    router.push(query ? `/explorar?${query}` : '/explorar')
   }
 
   const clearFilters = () => {
@@ -95,7 +96,7 @@ export default function SearchFilters() {
       platforms: [],
       collaborationType: '',
     })
-    router.push('/')
+    router.push('/explorar')
   }
 
   return (

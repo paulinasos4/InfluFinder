@@ -87,7 +87,7 @@ export default function InfluencerList() {
   if (influencers.length === 0) {
     return (
       <div className="p-12 text-center">
-        <p className="text-slate-500">No se encontraron influencers con los filtros seleccionados.</p>
+        <p className="text-slate-500">Estamos actualizando la base de influencers. Por favor, intentá nuevamente más tarde.</p>
       </div>
     )
   }

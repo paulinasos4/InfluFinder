@@ -263,15 +263,13 @@ export default function RegistroCreador() {
 
   return (
     <main className="min-h-screen bg-[#faf8f5]">
-      <header className="bg-slate-900 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link href="/" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">
-            ← Volver al inicio
-          </Link>
-        </div>
-      </header>
+      <div className="fixed top-0 left-0 right-0 z-[60] bg-[#EEE0F3] py-2.5 text-center">
+        <Link href="/" className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors inline-flex items-center gap-1">
+          ← Volver al inicio
+        </Link>
+      </div>
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-[8.25rem] pb-8">
         <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-8">
           <h1 className="text-3xl font-bold mb-6 text-slate-900">Registro de Creador</h1>
           <p className="text-slate-600 mb-6">

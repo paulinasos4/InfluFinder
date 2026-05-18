@@ -1,6 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
-import RotatingCtaLink from '@/components/RotatingCtaLink'
 import RotatingWord from '@/components/RotatingWord'
 
 export default function ComoFuncionaPage() {
@@ -12,25 +10,6 @@ export default function ComoFuncionaPage() {
           ← Volver al inicio
         </Link>
       </div>
-
-      {/* Header azul — centrado entre barra lavanda y contenido */}
-      <header className="fixed left-0 right-0 z-50 px-4 sm:px-6 md:px-[1cm] top-[3.25rem] md:top-[3.5rem] pt-0">
-        <div className="w-full mx-auto">
-          <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl bg-[#000020]">
-            <div className="w-full px-3 sm:px-4 lg:px-6 py-2 md:py-2.5">
-              <div className="flex justify-between items-center">
-                <Link href="/" className="flex items-center gap-4">
-                  <span className="inline-flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center overflow-visible -ml-1">
-                  <Image src="/logo.png" alt="InfluFinder" width={88} height={88} unoptimized className="rounded-lg object-contain !w-11 !h-11" style={{ transform: 'scale(1.45)' }} />
-                </span>
-                  <span className="text-xl font-bold text-white tracking-tight">influ-finder</span>
-                </Link>
-                <RotatingCtaLink className="bg-white text-slate-900 hover:bg-slate-100 px-4 py-2 md:px-5 md:py-2.5 rounded-full font-medium transition-colors text-xs md:text-sm" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* Naranja fija — mismo tamaño y posición que violeta/beige */}
       <section className="fixed top-[7.5rem] md:top-[8.25rem] left-4 right-4 sm:left-6 sm:right-6 md:left-[1cm] md:right-[1cm] z-10 flex flex-col justify-center py-16 rounded-3xl bg-[#F5B5BE] shadow-2xl h-[calc(100vh-7.5rem)] md:h-[calc(100vh-8.25rem)]">

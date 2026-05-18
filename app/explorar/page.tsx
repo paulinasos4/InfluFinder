@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
-import RotatingCtaLink from '@/components/RotatingCtaLink'
 import RotatingWord from '@/components/RotatingWord'
 import SearchFilters from '@/components/SearchFilters'
 import InfluencerList from '@/components/InfluencerList'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {
@@ -21,28 +19,10 @@ export default async function ExplorarPage() {
         </Link>
       </div>
 
-      <header className="fixed left-0 right-0 z-50 px-4 sm:px-6 md:px-[1cm] top-[3.25rem] md:top-[3.5rem] pt-0">
-        <div className="w-full mx-auto">
-          <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl bg-[#000020]">
-            <div className="w-full px-3 sm:px-4 lg:px-6 py-2 md:py-2.5">
-              <div className="flex justify-between items-center">
-                <Link href="/" className="flex items-center gap-4">
-                  <span className="inline-flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center overflow-visible -ml-1">
-                    <Image src="/logo.png" alt="InfluFinder" width={88} height={88} unoptimized className="rounded-lg object-contain !w-11 !h-11" style={{ transform: 'scale(1.45)' }} />
-                  </span>
-                  <span className="text-xl font-bold text-white tracking-tight">influ-finder</span>
-                </Link>
-                <RotatingCtaLink className="bg-white text-slate-900 hover:bg-slate-100 px-4 py-2 md:px-5 md:py-2.5 rounded-full font-medium transition-colors text-xs md:text-sm" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-
       <div className="w-full mx-auto px-4 sm:px-6 md:px-[1cm] pt-[7.5rem] md:pt-[8.25rem] pb-6 md:pb-8 space-y-3 md:space-y-4">
         <section className="rounded-xl md:rounded-2xl shadow-lg md:shadow-xl py-8 sm:py-10 md:py-14 lg:py-16 min-h-0 md:min-h-[70vh] bg-hero-moodboard">
           <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 text-center pb-16 sm:pb-20 md:pb-32 lg:pb-40 bg-transparent mt-4 md:mt-6">
-            <h1 className="font-hero font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] 2xl:text-[6rem] mb-3 md:mb-6 tracking-tight leading-[1.1] sm:leading-tight text-white uppercase px-1 drop-shadow-md">
+            <h1 className="animate-hero font-hero font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] 2xl:text-[6rem] mb-3 md:mb-6 tracking-tight leading-[1.1] sm:leading-tight text-white uppercase px-1 drop-shadow-md">
               <span className="inline-flex max-w-full flex-wrap justify-center items-baseline gap-x-1.5 gap-y-1 text-center">
                 <span className="whitespace-nowrap">
                   Encontrá el{' '}
@@ -56,7 +36,7 @@ export default async function ExplorarPage() {
                 <span className="whitespace-normal">ideal para tu marca</span>
               </span>
             </h1>
-            <p className="text-xs sm:text-sm md:text-base text-white max-w-2xl mx-auto font-light uppercase">
+            <p className="text-xs sm:text-sm md:text-base text-white max-w-2xl mx-auto font-light uppercase" style={{ animation: 'fadeSlideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both' }}>
               Buscá, filtrá y analizá según su audiencia y métricas
             </p>
           </div>

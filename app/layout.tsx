@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import Navbar from '@/components/Navbar'
 
 export const metadata: Metadata = {
   title: 'Influ Finder | Influencers en Uruguay - Directorio con métricas de influencers',
@@ -35,7 +36,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className="overflow-x-hidden">{children}</body>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `history.scrollRestoration = 'manual'` }} />
+      </head>
+      <body className="overflow-x-hidden">
+        <Navbar />
+        {children}
+      </body>
     </html>
   )
 }
